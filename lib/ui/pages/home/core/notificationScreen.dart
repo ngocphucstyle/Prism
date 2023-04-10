@@ -138,10 +138,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
                           color: Theme.of(context).accentColor),
                     ),
                     actions: [
-                      FlatButton(
+                      FloatingActionButton(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5)),
-                        color: Theme.of(context).hintColor,
+                        backgroundColor: Theme.of(context).hintColor,
                         onPressed: () {
                           Navigator.of(context).pop();
                           setState(() {
@@ -157,10 +157,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
                           ),
                         ),
                       ),
-                      FlatButton(
+                      FloatingActionButton(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5)),
-                        color: Theme.of(context).errorColor,
+                        backgroundColor: Theme.of(context).errorColor,
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
@@ -405,16 +405,16 @@ class _NotificationSettingsSheetState extends State<NotificationSettingsSheet> {
                     followersSubscriber = value;
                   });
                   if (value) {
-                    home.f.subscribeToTopic(
-                        globals.prismUser.email.split("@")[0].toString());
+                    // home.f.subscribeToTopic(
+                    //     globals.prismUser.email.split("@")[0].toString());
                   } else {
-                    home.f.unsubscribeFromTopic(
-                        globals.prismUser.email.split("@")[0].toString());
+                    // home.f.unsubscribeFromTopic(
+                    //     globals.prismUser.email.split("@")[0].toString());
                     main.prefs.put("postsSubscriber", value);
                     setState(() {
                       postsSubscriber = value;
                     });
-                    home.f.unsubscribeFromTopic('posts');
+                    // home.f.unsubscribeFromTopic('posts');
                   }
                 } else {
                   toasts.error("Please login to change this setting.");
@@ -446,9 +446,9 @@ class _NotificationSettingsSheetState extends State<NotificationSettingsSheet> {
                           postsSubscriber = value;
                         });
                         if (value) {
-                          home.f.subscribeToTopic('posts');
+                          // home.f.subscribeToTopic('posts');
                         } else {
-                          home.f.unsubscribeFromTopic('posts');
+                          // home.f.unsubscribeFromTopic('posts');
                         }
                       } else {
                         toasts.error("Please login to change this setting.");
@@ -501,9 +501,9 @@ class _NotificationSettingsSheetState extends State<NotificationSettingsSheet> {
                   recommendationsSubscriber = value;
                 });
                 if (value) {
-                  home.f.subscribeToTopic('recommendations');
+                  // home.f.subscribeToTopic('recommendations');
                 } else {
-                  home.f.unsubscribeFromTopic('recommendations');
+                  // home.f.unsubscribeFromTopic('recommendations');
                 }
               },
             ),

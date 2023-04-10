@@ -276,10 +276,10 @@ class _ProfileGridState extends State<ProfileGrid>
                                   borderRadius: BorderRadius.circular(20),
                                   image: DecorationImage(
                                       image: CachedNetworkImageProvider(
-                                        Provider.of<ProfileWallProvider>(
+                                        (Provider.of<ProfileWallProvider>(
                                                 context)
                                             .profileWalls![index]
-                                            .data()["wallpaper_thumb"]
+                                            .data() as Map<String,dynamic>)["wallpaper_thumb"]
                                             .toString(),
                                       ),
                                       fit: BoxFit.cover)),
@@ -306,11 +306,11 @@ class _ProfileGridState extends State<ProfileGrid>
                                           context, profileWallViewRoute,
                                           arguments: [
                                             index,
-                                            Provider.of<ProfileWallProvider>(
+                                            (Provider.of<ProfileWallProvider>(
                                                     context,
                                                     listen: false)
                                                 .profileWalls![index]
-                                                .data()["wallpaper_thumb"],
+                                                .data() as Map<String,dynamic>)["wallpaper_thumb"],
                                           ]);
                                     }
                                   },

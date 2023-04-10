@@ -15,8 +15,8 @@ class SeeMoreButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
-      color: Provider.of<ThemeModeExtended>(context).getCurrentModeStyle(
+    return FloatingActionButton(
+      backgroundColor: Provider.of<ThemeModeExtended>(context).getCurrentModeStyle(
                   MediaQuery.of(context).platformBrightness) ==
               "Dark"
           ? Colors.white10

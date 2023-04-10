@@ -116,7 +116,7 @@ void showChangelog(BuildContext context, Function func) {
       ),
     ),
     actions: [
-      FlatButton(
+      FloatingActionButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         onPressed: () {
           launch("https://bit.ly/prismchanges");
@@ -130,9 +130,9 @@ void showChangelog(BuildContext context, Function func) {
           ),
         ),
       ),
-      FlatButton(
+      FloatingActionButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-        color: Theme.of(context).errorColor,
+        backgroundColor: Theme.of(context).errorColor,
         onPressed: () {
           Navigator.of(context).pop();
           func();

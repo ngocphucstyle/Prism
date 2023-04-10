@@ -1329,27 +1329,27 @@ class _SetupViewScreenState extends State<SetupViewScreen>
                                   if (globals.prismUser.loggedIn == false) {
                                     googleSignInPopUp(context, () {
                                       onFavSetup(
-                                          Provider.of<SetupProvider>(context,
+                                          (Provider.of<SetupProvider>(context,
                                                   listen: false)
                                               .setups![index!]
-                                              .data()["id"]
+                                              .data() as Map<String,dynamic>)["id"]
                                               .toString(),
                                           Provider.of<SetupProvider>(context,
                                                   listen: false)
                                               .setups![index!]
-                                              .data());
+                                              .data() as Map);
                                     });
                                   } else {
                                     onFavSetup(
-                                        Provider.of<SetupProvider>(context,
+                                        (Provider.of<SetupProvider>(context,
                                                 listen: false)
                                             .setups![index!]
-                                            .data()["id"]
+                                            .data() as Map<String,dynamic>)["id"]
                                             .toString(),
                                         Provider.of<SetupProvider>(context,
                                                 listen: false)
                                             .setups![index!]
-                                            .data());
+                                            .data() as Map);
                                   }
                                 },
                                 iconColor: Theme.of(context).accentColor,

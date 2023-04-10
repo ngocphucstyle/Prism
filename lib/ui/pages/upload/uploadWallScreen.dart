@@ -130,9 +130,20 @@ class _UploadWallScreenState extends State<UploadWallScreen> {
       isProcessing = false;
     });
     try {
+      print("try updloadFile");
       final String base64Image = base64Encode(imageBytes);
+      print("base64Image $base64Image");
+
       final String base64ImageThumb = base64Encode(imageBytesThumb);
+      print("base64ImageThumb $base64ImageThumb");
+
       final github = GitHub(auth: Authentication.withToken(token));
+      print("token $token");
+      print("github ${github.auth!.username}");
+      Repository repo = await github.repositories.getRepository(RepositorySlug(gitUserName, 'Prism'));
+      print("github ${repo.createdAt}");
+
+
       await github.repositories
           .createFile(
               RepositorySlug(gitUserName, repoName),
@@ -140,11 +151,13 @@ class _UploadWallScreenState extends State<UploadWallScreen> {
                   message: Path.basename(image.path),
                   content: base64Image,
                   path: Path.basename(image.path)))
-          .then((value) => setState(() {
-                wallpaperUrl = value.content!.downloadUrl;
-                wallpaperPath = value.content!.path!;
-                wallpaperSha = value.content!.sha!;
-              }));
+          .then(
+            (value) => setState(() {
+              wallpaperUrl = value.content!.downloadUrl;
+              wallpaperPath = value.content!.path!;
+              wallpaperSha = value.content!.sha!;
+            }),
+          );
       await github.repositories
           .createFile(
               RepositorySlug(gitUserName, repoName),

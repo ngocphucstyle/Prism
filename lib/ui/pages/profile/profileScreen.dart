@@ -1,44 +1,34 @@
+// ignore_for_file: cast_nullable_to_non_nullable
+
 import 'dart:async';
 import 'dart:convert';
-import 'package:Prism/auth/google_auth.dart';
-import 'package:Prism/data/favourites/provider/favouriteProvider.dart';
-import 'package:Prism/data/favourites/provider/favouriteSetupProvider.dart';
+
 import 'package:Prism/data/profile/wallpaper/getUserProfile.dart';
-import 'package:Prism/data/profile/wallpaper/profileSetupProvider.dart';
-import 'package:Prism/data/profile/wallpaper/profileWallProvider.dart';
 import 'package:Prism/gitkey.dart';
+import 'package:Prism/global/globals.dart' as globals;
+import 'package:Prism/global/svgAssets.dart';
 import 'package:Prism/logger/logger.dart';
 import 'package:Prism/routes/router.dart';
-import 'package:Prism/theme/jam_icons_icons.dart';
 import 'package:Prism/routes/routing_constants.dart';
+import 'package:Prism/theme/jam_icons_icons.dart';
+import 'package:Prism/theme/toasts.dart' as toasts;
 import 'package:Prism/ui/widgets/animated/loader.dart';
-import 'package:Prism/ui/widgets/popup/editProfilePanel.dart';
-import 'package:Prism/ui/widgets/popup/linkPopUp.dart';
-import 'package:Prism/ui/widgets/popup/noLoadLinkPopUp.dart';
-import 'package:Prism/ui/widgets/profile/aboutList.dart';
-import 'package:Prism/ui/widgets/profile/drawerWidget.dart';
-import 'package:Prism/ui/widgets/profile/generalList.dart';
-import 'package:Prism/ui/widgets/profile/downloadList.dart';
-import 'package:Prism/ui/widgets/profile/premiumList.dart';
 import 'package:Prism/ui/widgets/home/core/bottomNavBar.dart';
 import 'package:Prism/ui/widgets/home/core/inheritedScrollControllerProvider.dart';
-import 'package:Prism/ui/widgets/profile/uploadedWallsLoader.dart';
-import 'package:Prism/ui/widgets/profile/uploadedSetupsLoader.dart';
+import 'package:Prism/ui/widgets/popup/noLoadLinkPopUp.dart';
+import 'package:Prism/ui/widgets/profile/aboutList.dart';
+import 'package:Prism/ui/widgets/profile/downloadList.dart';
+import 'package:Prism/ui/widgets/profile/drawerWidget.dart';
+import 'package:Prism/ui/widgets/profile/generalList.dart';
+import 'package:Prism/ui/widgets/profile/premiumList.dart';
 import 'package:Prism/ui/widgets/profile/userList.dart';
 import 'package:Prism/ui/widgets/profile/userProfileLoader.dart';
 import 'package:Prism/ui/widgets/profile/userProfileSetupLoader.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flare_flutter/flare_actor.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:Prism/main.dart' as main;
-import 'package:provider/provider.dart';
-import 'package:Prism/global/globals.dart' as globals;
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:Prism/global/svgAssets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:intl/intl.dart';
-import 'package:Prism/theme/toasts.dart' as toasts;
+import 'package:flare_flutter/flare_actor.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 
@@ -125,22 +115,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     return ProfileChild(
                       ownProfile: false,
                       id: snapshot.data!.docs[0].id,
-                      bio: snapshot.data!.docs[0].data()["bio"].toString(),
-                      coverPhoto:
-                          snapshot.data!.docs[0].data()["coverPhoto"] as String,
-                      email: snapshot.data!.docs[0].data()["email"].toString(),
-                      links: snapshot.data!.docs[0].data()["links"] as Map,
-                      name: snapshot.data!.docs[0].data()["name"].toString(),
-                      premium: snapshot.data!.docs[0].data()["premium"] as bool,
-                      userPhoto: snapshot.data!.docs[0]
-                          .data()["profilePhoto"]
+                      bio: (snapshot.data!.docs[0].data()
+                              as Map<String, dynamic>)["bio"]
                           .toString(),
-                      username:
-                          snapshot.data!.docs[0].data()["username"].toString(),
-                      followers:
-                          snapshot.data!.docs[0].data()["followers"] as List,
-                      following:
-                          snapshot.data!.docs[0].data()["following"] as List,
+                      coverPhoto: (snapshot.data!.docs[0].data()
+                          as Map<String, dynamic>)["coverPhoto"] as String,
+                      email: (snapshot.data!.docs[0].data()
+                              as Map<String, dynamic>)["email"]
+                          .toString(),
+                      links: (snapshot.data!.docs[0].data()
+                          as Map<String, dynamic>)["links"] as Map,
+                      name: (snapshot.data!.docs[0].data()
+                              as Map<String, dynamic>)["name"]
+                          .toString(),
+                      premium: (snapshot.data!.docs[0].data()
+                          as Map<String, dynamic>)["premium"] as bool,
+                      userPhoto: (snapshot.data!.docs[0].data()
+                              as Map<String, dynamic>)["profilePhoto"]
+                          .toString(),
+                      username: (snapshot.data!.docs[0].data()
+                              as Map<String, dynamic>)["username"]
+                          .toString(),
+                      followers: (snapshot.data!.docs[0].data()
+                          as Map<String, dynamic>)["followers"] as List,
+                      following: (snapshot.data!.docs[0].data()
+                          as Map<String, dynamic>)["following"] as List,
                     );
                   }
                   return Container(
@@ -433,8 +432,9 @@ class _ProfileChildState extends State<ProfileChild> {
                                       )
                                     else
                                       CachedNetworkImage(
-                                        imageUrl: widget.coverPhoto ??
-                                            "https://firebasestorage.googleapis.com/v0/b/prism-wallpapers.appspot.com/o/Headers%2FheaderDefault.png?alt=media&token=1a10b128-c355-45d8-af96-678c13c05b3c",
+                                        imageUrl: widget.coverPhoto!.isNotEmpty
+                                            ? widget.coverPhoto!
+                                            : "https://firebasestorage.googleapis.com/v0/b/prism-wallpapers.appspot.com/o/Headers%2FheaderDefault.png?alt=media&token=1a10b128-c355-45d8-af96-678c13c05b3c",
                                         fit: BoxFit.cover,
                                         width:
                                             MediaQuery.of(context).size.width,

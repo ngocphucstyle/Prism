@@ -275,9 +275,9 @@ class _UserProfileGridState extends State<UserProfileGrid>
                           ? PremiumBannerWalls(
                               comparator: !globals.isPremiumWall(
                                   globals.premiumCollections,
-                                  Provider.of<UserProfileProvider>(context)
+                                  (Provider.of<UserProfileProvider>(context)
                                           .userProfileWalls![index]
-                                          .data()["collections"] as List? ??
+                                          .data() as Map<String,dynamic>)["collections"] as List? ??
                                       []),
                               defaultChild: FocusedMenuHolder(
                                 provider: "UserProfileWall",
@@ -330,9 +330,9 @@ class PhotographerWallTile extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               image: DecorationImage(
                   image: CachedNetworkImageProvider(
-                    Provider.of<UserProfileProvider>(context)
+                    (Provider.of<UserProfileProvider>(context)
                         .userProfileWalls![index]
-                        .data()["wallpaper_thumb"]
+                        .data() as Map<String,dynamic>)["wallpaper_thumb"]
                         .toString(),
                   ),
                   fit: BoxFit.cover)),
@@ -351,10 +351,10 @@ class PhotographerWallTile extends StatelessWidget {
                 } else {
                   globals.isPremiumWall(
                                   globals.premiumCollections,
-                                  Provider.of<UserProfileProvider>(context,
+                                  (Provider.of<UserProfileProvider>(context,
                                               listen: false)
                                           .userProfileWalls![index]
-                                          .data()["collections"] as List? ??
+                                          .data() as Map<String,dynamic>)["collections"] as List? ??
                                       []) ==
                               true &&
                           globals.prismUser.premium != true
@@ -367,10 +367,10 @@ class PhotographerWallTile extends StatelessWidget {
                       : Navigator.pushNamed(context, userProfileWallViewRoute,
                           arguments: [
                               index,
-                              Provider.of<UserProfileProvider>(context,
+                              (Provider.of<UserProfileProvider>(context,
                                       listen: false)
                                   .userProfileWalls![index]
-                                  .data()["wallpaper_thumb"],
+                                  .data() as Map<String,dynamic>)["wallpaper_thumb"],
                             ]);
                 }
               },

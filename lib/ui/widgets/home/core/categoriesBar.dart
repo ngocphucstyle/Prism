@@ -36,7 +36,7 @@ class _CategoriesBarState extends State<CategoriesBar> {
       noNotification = true;
     }
     super.initState();
-    checkForUpdate();
+    // checkForUpdate();
   }
 
   Future<void> fetchNotifications() async {

@@ -10,14 +10,16 @@ String? currentCollectionName;
 
 Future<List?> getCollections() async {
   if (navStack.last == "Home") {
-    logger.d("Fetching collections!");
+    logger.d("Fetching collections 333!");
     collections = [];
     await databaseReference
         .collection("collections")
         .orderBy("lastEditTime", descending: true)
         .get()
         .then((value) {
+          print("aaaa ${value.docs}");
       for (final doc in value.docs) {
+        print("phuc ${doc.data()}");
         collections!.add(doc.data());
       }
     }).catchError((e) {

@@ -49,17 +49,17 @@ class _FollowingScreenState extends State<FollowingScreen> {
         finalQuery = p;
         finalDocs = [];
         for (final doc in finalQuery.docs) {
-          if (following.contains(doc.data()["email"]) &&
+          if (following.contains((doc.data() as Map<String,dynamic>)["email"]) &&
               finalDocs.length <= 30) {
             finalDocs.add(doc);
           }
         }
       });
     });
-    load(_streamController!);
+    load(_streamController);
   }
 
-  Future<void> load(StreamController<QuerySnapshot> sc) async {
+  Future<void> load(StreamController<QuerySnapshot>? sc) async {
     await databaseReference
         .collection(USER_NEW_COLLECTION)
         .where("email", isEqualTo: globals.prismUser.email)
@@ -72,8 +72,9 @@ class _FollowingScreenState extends State<FollowingScreen> {
         .where("review", isEqualTo: true)
         .orderBy('createdAt', descending: true)
         .limit(200)
-        .snapshots()
-        .pipe(sc);
+        .snapshots();
+        // ignore: cast_nullable_to_non_nullable
+        // .pipe(sc as StreamConsumer<QuerySnapshot<Map<String, dynamic>>>);
   }
 
   @override
@@ -319,7 +320,8 @@ class _FollowingTileState extends State<FollowingTile> {
                 else
                   FavIconButton(
                     id: widget.finalDocs[widget.index]["id"] as String?,
-                    prism: widget.finalDocs[widget.index].data(),
+                    // ignore: cast_nullable_to_non_nullable
+                    prism: widget.finalDocs[widget.index].data() as Map ,
                   ),
               ],
             ),

@@ -123,7 +123,7 @@ class UserList extends StatelessWidget {
                             ),
                           ),
                           actions: <Widget>[
-                            FlatButton(
+                            FloatingActionButton(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5)),
                               onPressed: () {
@@ -144,10 +144,10 @@ class UserList extends StatelessWidget {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(right: 8.0),
-                              child: FlatButton(
+                              child: FloatingActionButton(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5)),
-                                color: Theme.of(context).errorColor,
+                                backgroundColor: Theme.of(context).errorColor,
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
@@ -201,7 +201,7 @@ class UserList extends StatelessWidget {
                             ),
                           ),
                           actions: <Widget>[
-                            FlatButton(
+                            FloatingActionButton(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5)),
                               onPressed: () {
@@ -221,10 +221,10 @@ class UserList extends StatelessWidget {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(right: 8.0),
-                              child: FlatButton(
+                              child: FloatingActionButton(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5)),
-                                color: Theme.of(context).errorColor,
+                                backgroundColor: Theme.of(context).errorColor,
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },

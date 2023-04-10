@@ -45,9 +45,9 @@ class _GoogleButtonState extends State<GoogleButton> {
                 ),
                 borderRadius: BorderRadius.circular(500),
               ),
-        child: FlatButton(
-          colorBrightness: Brightness.light,
-          padding: const EdgeInsets.all(0),
+        child: FloatingActionButton(
+          // colorBrightness: Brightness.light,
+          // padding: const EdgeInsets.all(0),
           shape: const StadiumBorder(),
           onPressed: () {
             gAuth.signInWithGoogle().whenComplete(() async {}).catchError((e) {

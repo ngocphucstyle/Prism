@@ -10,7 +10,6 @@ import 'package:Prism/ui/widgets/home/core/categoriesBar.dart';
 import 'package:Prism/ui/widgets/home/core/offlineBanner.dart';
 import 'package:Prism/ui/widgets/popup/signInPopUp.dart';
 import 'package:animations/animations.dart';
-import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
@@ -60,7 +59,8 @@ class _PageManagerChildState extends State<PageManagerChild>
   String shortcut = "No Action Set";
 
   Future<void> checkConnection() async {
-    result = await DataConnectionChecker().hasConnection;
+    // result = await DataConnectionChecker().hasConnection;
+    
     if (result) {
       logger.d("Internet working as expected!");
       setState(() {});
@@ -162,7 +162,7 @@ class _PageManagerChildState extends State<PageManagerChild>
   }
 
   Future<bool> initDynamicLinks(BuildContext context) async {
-    final PendingDynamicLinkData data =
+    final PendingDynamicLinkData? data =
         await FirebaseDynamicLinks.instance.getInitialLink();
     final Uri? deepLink = data?.link;
 
@@ -198,8 +198,8 @@ class _PageManagerChildState extends State<PageManagerChild>
     }
 
     FirebaseDynamicLinks.instance.onLink(
-        onSuccess: (PendingDynamicLinkData dynamicLink) async {
-      final Uri deepLink = dynamicLink.link;
+        onSuccess: (dynamicLink) async {
+      final Uri deepLink = dynamicLink!.link;
 
       if (deepLink != null) {
         logger.d("opened while bg via deep link1");
@@ -416,7 +416,7 @@ class _PageManagerChildState extends State<PageManagerChild>
 //         ],
 //       ),
 //       actions: [
-//         FlatButton(
+//         FloatingActionButton(
 //           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
 //           textColor: Theme.of(context).accentColor,
 //           onPressed: () {
@@ -427,7 +427,7 @@ class _PageManagerChildState extends State<PageManagerChild>
 //             'LATER',
 //           ),
 //         ),
-//         FlatButton(
+//         FloatingActionButton(
 //           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
 //           textColor: Theme.of(context).accentColor,
 //           color: Theme.of(context).errorColor,

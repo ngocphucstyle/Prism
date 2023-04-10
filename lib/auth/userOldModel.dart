@@ -1,3 +1,5 @@
+// ignore_for_file: cast_nullable_to_non_nullable
+
 import 'package:Prism/auth/google_auth.dart';
 import 'package:Prism/logger/logger.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -124,19 +126,19 @@ class PrismUsers {
 
   factory PrismUsers.fromDocumentSnapshot(DocumentSnapshot doc, User user) =>
       PrismUsers.withoutSave(
-        bio: (doc.data()!["bio"] ?? "").toString(),
-        createdAt: doc.data()!["createdAt"].toString(),
-        email: doc.data()!["email"].toString(),
-        username: (doc.data()!["username"] ?? user.displayName).toString(),
-        followers: doc.data()!["followers"] as List ?? [],
-        following: doc.data()!["following"] as List ?? [],
-        id: doc.data()!["id"].toString(),
-        lastLogin: ((doc.data()!["lastLogin"] as Timestamp?) ?? Timestamp.now())
+        bio: ((doc.data() as Map<String,dynamic>) ["bio"] ?? "").toString(),
+        createdAt: (doc.data() as Map<String,dynamic>) ["createdAt"].toString(),
+        email: (doc.data() as Map<String,dynamic>) ["email"].toString(),
+        username: ((doc.data() as Map<String,dynamic>) ["username"] ?? user.displayName).toString(),
+        followers: (doc.data() as Map<String,dynamic>) ["followers"] as List ?? [],
+        following: (doc.data() as Map<String,dynamic>) ["following"] as List ?? [],
+        id: (doc.data() as Map<String,dynamic>) ["id"].toString(),
+        lastLogin: (((doc.data() as Map<String,dynamic>) ["lastLogin"] as Timestamp?) ?? Timestamp.now())
             .toDate(),
-        links: doc.data()!["links"] as Map ?? {},
-        premium: doc.data()!["premium"] as bool,
+        links: (doc.data() as Map<String,dynamic>) ["links"] as Map ?? {},
+        premium: (doc.data() as Map<String,dynamic>) ["premium"] as bool,
         loggedIn: true,
-        profilePhoto: (doc.data()!["profilePhoto"] ?? user.photoURL).toString(),
+        profilePhoto: ((doc.data() as Map<String,dynamic>) ["profilePhoto"] ?? user.photoURL).toString(),
       );
 
   Map<String, dynamic> toJson() => {

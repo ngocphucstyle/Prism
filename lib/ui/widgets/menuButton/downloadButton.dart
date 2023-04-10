@@ -339,9 +339,9 @@ class _DownloadDialogContentState extends State<DownloadDialogContent> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              FlatButton(
+              FloatingActionButton(
                 shape: const StadiumBorder(),
-                color: Theme.of(context).errorColor,
+                backgroundColor: Theme.of(context).errorColor,
                 onPressed: () {
                   if (globals.prismUser.loggedIn == false) {
                     googleSignInPopUp(context, () {
@@ -361,9 +361,9 @@ class _DownloadDialogContentState extends State<DownloadDialogContent> {
                   ),
                 ),
               ),
-              FlatButton(
+              FloatingActionButton(
                 shape: const StadiumBorder(),
-                color: Theme.of(context).accentColor.withOpacity(0.3),
+                backgroundColor: Theme.of(context).accentColor.withOpacity(0.3),
                 onPressed: () {
                   if (adsNotifier.loadingAd == false &&
                       adsNotifier.adLoaded == true) {

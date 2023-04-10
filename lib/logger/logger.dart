@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_archive/flutter_archive.dart';
-import 'package:file_encrypter/file_encrypter.dart';
 import 'package:logger/logger.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -62,7 +61,7 @@ class LogOutputPrinter extends PrettyPrinter {
         "---------------------------------------------------------------------------\nLEVEL : $logLvl\nMESSAGE : ${DateTime.now().toString().substring(11, 22)} :: $logMsg\nERROR : $logError\nSTACKTRACE : $logStrace";
     Future.delayed(const Duration(seconds: 1))
         .then((value) => _logFile!.writeStringSync('$str\n'));
-    final timeStr = getTime().substring(0, 12);
+    final timeStr = getTime(DateTime.now()).substring(0, 12);
     if (logStrace != null) {
       // print(color!('$timeStr $prefix - $logMsg \n$logStrace'));
       developer.log(
@@ -165,12 +164,14 @@ Future<String> encryptLogsZip(String zipPath) async {
   pathList.removeLast();
   final String outFilename = "${pathList.join("/")}/logs_zip.dat";
   logger.v("Encryption Started");
-  String secretKey = await FileEncrypter.encrypt(
-    inFilename: zipPath,
-    outFileName: outFilename,
-  );
+  // String secretKey = await FileEncrypter.encrypt(
+  //   inFilename: zipPath,
+  //   outFileName: outFilename,
+  // );
+  String secretKey = "secretKey";
   logger.v("Encryption Done");
   logger.d(outFilename);
+
   // logger.d(secretKey);
   // logger.v("Renaming File");
   // final String secretOutFilename = "${pathList.join("/")}/$secretKey";

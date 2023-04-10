@@ -1,21 +1,20 @@
+import 'package:Prism/data/favourites/provider/favouriteProvider.dart';
+import 'package:Prism/data/favourites/provider/favouriteSetupProvider.dart';
 import 'package:Prism/data/notifications/model/inAppNotifModel.dart';
-import 'package:Prism/routes/router.dart';
-import 'package:Prism/ui/widgets/home/core/headingChipBar.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:Prism/global/globals.dart' as globals;
+import 'package:Prism/logger/logger.dart';
 import 'package:Prism/main.dart' as main;
-import 'package:Prism/theme/jam_icons_icons.dart';
-import 'package:Prism/ui/widgets/popup/signInPopUp.dart';
+import 'package:Prism/routes/router.dart';
 import 'package:Prism/routes/routing_constants.dart';
+import 'package:Prism/theme/jam_icons_icons.dart';
 import 'package:Prism/theme/toasts.dart' as toasts;
+import 'package:Prism/ui/widgets/home/core/headingChipBar.dart';
+import 'package:Prism/ui/widgets/popup/signInPopUp.dart';
+import 'package:animations/animations.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
-import 'package:Prism/data/favourites/provider/favouriteProvider.dart';
-import 'package:Prism/data/favourites/provider/favouriteSetupProvider.dart';
-import 'package:animations/animations.dart';
-import 'package:Prism/global/globals.dart' as globals;
-import 'package:Prism/logger/logger.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({
@@ -416,7 +415,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     ),
                                   ),
                                   actions: <Widget>[
-                                    FlatButton(
+                                    FloatingActionButton(
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(5)),
@@ -439,11 +438,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     Padding(
                                       padding:
                                           const EdgeInsets.only(right: 8.0),
-                                      child: FlatButton(
+                                      child: FloatingActionButton(
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(5)),
-                                        color: Theme.of(context).errorColor,
+                                        backgroundColor:
+                                            Theme.of(context).errorColor,
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         },
@@ -501,7 +501,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     ),
                                   ),
                                   actions: <Widget>[
-                                    FlatButton(
+                                    FloatingActionButton(
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(5)),
@@ -525,11 +525,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     Padding(
                                       padding:
                                           const EdgeInsets.only(right: 8.0),
-                                      child: FlatButton(
+                                      child: FloatingActionButton(
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(5)),
-                                        color: Theme.of(context).errorColor,
+                                        backgroundColor:
+                                            Theme.of(context).errorColor,
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         },

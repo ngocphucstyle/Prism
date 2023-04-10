@@ -1,3 +1,5 @@
+// ignore_for_file: cast_nullable_to_non_nullable
+
 import 'package:Prism/data/profile/wallpaper/getUserProfile.dart';
 import 'package:Prism/global/svgAssets.dart';
 import 'package:Prism/routes/routing_constants.dart';
@@ -298,10 +300,10 @@ class _UserProfileSetupGridState extends State<UserProfileSetupGrid>
                                   borderRadius: BorderRadius.circular(20),
                                   image: DecorationImage(
                                       image: CachedNetworkImageProvider(
-                                        Provider.of<UserProfileProvider>(
+                                        (Provider.of<UserProfileProvider>(
                                                 context)
                                             .userProfileSetups![index]
-                                            .data()["image"]
+                                            .data() as Map<String,dynamic>)["image"]
                                             .toString(),
                                       ),
                                       fit: BoxFit.cover)),

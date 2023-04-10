@@ -7,12 +7,12 @@ import 'package:Prism/ui/widgets/home/wallpapers/pexelsGrid.dart';
 import 'package:Prism/ui/widgets/home/wallpapers/wallhavenGrid.dart';
 import 'package:Prism/ui/widgets/home/wallpapers/wallpaperGrid.dart';
 import 'package:Prism/ui/widgets/popup/changelogPopUp.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:Prism/main.dart' as main;
 import 'package:provider/provider.dart';
 
-final FirebaseMessaging f = FirebaseMessaging.instance;
+// final FirebaseMessaging f = FirebaseMessaging.instance;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -49,8 +49,8 @@ class _HomeScreenState extends State<HomeScreen> {
     if (main.prefs.get('subscribedToRecommendations', defaultValue: false)
         as bool) {
     } else {
-      f.subscribeToTopic('recommendations');
-      f.subscribeToTopic('posts');
+      // f.subscribeToTopic('recommendations');
+      // f.subscribeToTopic('posts');
       main.prefs.put('subscribedToRecommendations', true);
     }
     isNew = true;
@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _updateToken() {
-    f.requestPermission();
+    // f.requestPermission();
   }
 
   void showChangelogCheck(BuildContext context) {

@@ -1,9 +1,10 @@
+// ignore_for_file: cast_nullable_to_non_nullable
+
 import 'package:Prism/auth/badgeModel.dart';
 import 'package:Prism/auth/transactionModel.dart';
 import 'package:Prism/logger/logger.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -78,62 +79,62 @@ class PrismUsersV2 {
       _$PrismUsersV2FromJson(json);
   factory PrismUsersV2.fromDocumentSnapshot(DocumentSnapshot doc, User user) =>
       PrismUsersV2(
-        name: (doc.data()!["name"] ?? user.displayName).toString(),
-        username: (doc.data()!["username"] ?? user.displayName)
+        name: ((doc.data() as Map<String, dynamic>)["name"]  ?? user.displayName).toString(),
+        username: ((doc.data() as Map<String, dynamic>)["username"] ?? user.displayName)
             .toString()
             .replaceAll(RegExp(r"(?: |[^\w\s])+"), ""),
-        email: (doc.data()!["email"] ?? user.email).toString(),
-        id: doc.data()!["id"].toString(),
-        createdAt: doc.data()!["createdAt"].toString(),
-        premium: doc.data()!["premium"] as bool,
-        lastLoginAt: doc.data()!["lastLoginAt"]?.toString() ??
+        email: ((doc.data() as Map<String, dynamic>)["email"] ?? user.email).toString(),
+        id: (doc.data() as Map<String, dynamic>)["id"].toString(),
+        createdAt: (doc.data() as Map<String, dynamic>)["createdAt"].toString(),
+        premium: (doc.data() as Map<String, dynamic>)["premium"] as bool,
+        lastLoginAt: (doc.data() as Map<String, dynamic>)["lastLoginAt"]?.toString() ??
             DateTime.now().toUtc().toIso8601String(),
-        links: doc.data()!["links"] as Map<String, dynamic> ?? {},
-        followers: doc.data()!["followers"] as List ?? [],
-        following: doc.data()!["following"] as List ?? [],
-        profilePhoto: (doc.data()!["profilePhoto"] ?? user.photoURL).toString(),
-        bio: (doc.data()!["bio"] ?? "").toString(),
+        links: (doc.data() as Map<String, dynamic>)["links"] as Map<String, dynamic> ?? {},
+        followers: (doc.data() as Map<String, dynamic>)["followers"] as List ?? [],
+        following: (doc.data() as Map<String, dynamic>)["following"] as List ?? [],
+        profilePhoto: ((doc.data() as Map<String, dynamic>)["profilePhoto"] ?? user.photoURL).toString(),
+        bio: ((doc.data() as Map<String, dynamic>)["bio"] ?? "").toString(),
         loggedIn: true,
-        badges: (doc.data()!['badges'] as List<dynamic> ?? [])
+        badges: ((doc.data() as Map<String, dynamic>)['badges'] as List<dynamic> ?? [])
             .map((e) => Badge.fromJson(e as Map<String, dynamic>))
             .toList(),
-        subPrisms: doc.data()!['subPrisms'] as List<dynamic> ?? [],
-        coins: doc.data()!['coins'] as int ?? 0,
-        transactions: (doc.data()!['transactions'] as List<dynamic> ?? [])
+        subPrisms: (doc.data() as Map<String, dynamic>)['subPrisms'] as List<dynamic> ?? [],
+        coins: (doc.data() as Map<String, dynamic>)['coins'] as int ?? 0,
+        transactions: ((doc.data() as Map<String, dynamic>)['transactions'] as List<dynamic> ?? [])
             .map((e) => PrismTransaction.fromJson(e as Map<String, dynamic>))
             .toList(),
-        coverPhoto: doc.data()!["coverPhoto"]?.toString(),
+        coverPhoto: (doc.data() as Map<String, dynamic>)["coverPhoto"]?.toString(),
       );
 
   factory PrismUsersV2.fromDocumentSnapshotWithoutUser(DocumentSnapshot doc) =>
       PrismUsersV2(
-        name: (doc.data()!["name"] ?? "").toString(),
-        username: (doc.data()!["username"] ?? "")
+        name: ((doc.data() as Map<String, dynamic>)["name"] ?? "").toString(),
+        username: ((doc.data() as Map<String, dynamic>)["username"] ?? "")
             .toString()
             .replaceAll(RegExp(r"(?: |[^\w\s])+"), ""),
-        email: (doc.data()!["email"] ?? "").toString(),
-        id: doc.data()!["id"].toString(),
-        createdAt: DateTime.parse(doc.data()!["createdAt"] as String)
+        email: ((doc.data() as Map<String, dynamic>)["email"] ?? "").toString(),
+        id: (doc.data() as Map<String, dynamic>)["id"].toString(),
+        createdAt: DateTime.parse((doc.data() as Map<String, dynamic>)["createdAt"] as String)
             .toUtc()
             .toIso8601String(),
-        premium: doc.data()!["premium"] as bool,
-        lastLoginAt: doc.data()!["lastLoginAt"]?.toString() ??
+        premium: (doc.data() as Map<String, dynamic>)["premium"] as bool,
+        lastLoginAt: (doc.data() as Map<String, dynamic>)["lastLoginAt"]?.toString() ??
             DateTime.now().toUtc().toIso8601String(),
-        links: doc.data()!["links"] as Map<String, dynamic> ?? {},
-        followers: doc.data()!["followers"] as List ?? [],
-        following: doc.data()!["following"] as List ?? [],
-        profilePhoto: (doc.data()!["profilePhoto"] ?? "").toString(),
-        bio: (doc.data()!["bio"] ?? "").toString(),
+        links: (doc.data() as Map<String, dynamic>)["links"] as Map<String, dynamic> ?? {},
+        followers: (doc.data() as Map<String, dynamic>)["followers"] as List ?? [],
+        following: (doc.data() as Map<String, dynamic>)["following"] as List ?? [],
+        profilePhoto: ((doc.data() as Map<String, dynamic>)["profilePhoto"] ?? "").toString(),
+        bio: ((doc.data() as Map<String, dynamic>)["bio"] ?? "").toString(),
         loggedIn: true,
-        badges: (doc.data()!['badges'] as List<dynamic> ?? [])
+        badges: ((doc.data() as Map<String, dynamic>)['badges'] as List<dynamic> ?? [])
             .map((e) => Badge.fromJson(e as Map<String, dynamic>))
             .toList(),
-        subPrisms: doc.data()!['subPrisms'] as List<dynamic> ?? [],
-        coins: doc.data()!['coins'] as int ?? 0,
-        transactions: (doc.data()!['transactions'] as List<dynamic> ?? [])
+        subPrisms: (doc.data() as Map<String, dynamic>)['subPrisms'] as List<dynamic> ?? [],
+        coins: (doc.data() as Map<String, dynamic>)['coins'] as int ?? 0,
+        transactions: ((doc.data() as Map<String, dynamic>)['transactions'] as List<dynamic> ?? [])
             .map((e) => PrismTransaction.fromJson(e as Map<String, dynamic>))
             .toList(),
-        coverPhoto: doc.data()!["coverPhoto"]?.toString(),
+        coverPhoto: (doc.data() as Map<String, dynamic>)["coverPhoto"]?.toString(),
       );
   Map<String, dynamic> toJson() => _$PrismUsersV2ToJson(this);
 }

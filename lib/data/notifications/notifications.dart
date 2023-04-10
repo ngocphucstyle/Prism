@@ -1,3 +1,5 @@
+// ignore_for_file: cast_nullable_to_non_nullable
+
 import 'package:Prism/data/notifications/model/inAppNotifModel.dart';
 import 'package:Prism/global/globals.dart' as globals;
 import 'package:Prism/logger/logger.dart';
@@ -35,8 +37,10 @@ Future<void> getNotifs() async {
     if (globals.prismUser.premium == false) {
       getLatestNotifs('free').then((snap) {
         for (final doc in snap.docs) {
-          if (doc.data()['modifier'] != '' || doc.data()['modifier'] != null) {
-            box.add(InAppNotif.fromSnapshot(doc.data()));
+          // ignore: cast_nullable_to_non_nullable
+          if ((doc.data() as Map<String, dynamic>)['modifier'] != '' || (doc.data() as Map<String, dynamic>)['modifier'] != null) {
+            // ignore: cast_nullable_to_non_nullable
+            box.add(InAppNotif.fromSnapshot(doc.data() as Map<String, dynamic>));
           }
         }
       });
@@ -44,30 +48,30 @@ Future<void> getNotifs() async {
     if (globals.prismUser.premium == true) {
       getLatestNotifs('premium').then((snap) {
         for (final doc in snap.docs) {
-          if (doc.data()['modifier'] != '' || doc.data()['modifier'] != null) {
-            box.add(InAppNotif.fromSnapshot(doc.data()));
+          if ((doc.data() as Map<String, dynamic>)['modifier'] != '' || (doc.data() as Map<String, dynamic>)['modifier'] != null) {
+            box.add(InAppNotif.fromSnapshot(doc.data() as Map<String, dynamic>));
           }
         }
       });
     }
     getLatestNotifs('all').then((snap) {
       for (final doc in snap.docs) {
-        if (doc.data()['modifier'] != '' || doc.data()['modifier'] != null) {
-          box.add(InAppNotif.fromSnapshot(doc.data()));
+        if ((doc.data() as Map<String, dynamic>)['modifier'] != '' || (doc.data() as Map<String, dynamic>)['modifier'] != null) {
+          box.add(InAppNotif.fromSnapshot(doc.data() as Map<String, dynamic>));
         }
       }
     });
     getLatestNotifs(globals.currentAppVersion).then((snap) {
       for (final doc in snap.docs) {
-        if (doc.data()['modifier'] != '' || doc.data()['modifier'] != null) {
-          box.add(InAppNotif.fromSnapshot(doc.data()));
+        if ((doc.data() as Map<String, dynamic>)['modifier'] != '' || (doc.data() as Map<String, dynamic>)['modifier'] != null) {
+          box.add(InAppNotif.fromSnapshot(doc.data() as Map<String, dynamic>));
         }
       }
     });
     getLatestNotifs(globals.prismUser.email).then((snap) {
       for (final doc in snap.docs) {
-        if (doc.data()['modifier'] != '' || doc.data()['modifier'] != null) {
-          box.add(InAppNotif.fromSnapshot(doc.data()));
+        if ((doc.data() as Map<String, dynamic>)['modifier'] != '' || (doc.data() as Map<String, dynamic>)['modifier'] != null) {
+          box.add(InAppNotif.fromSnapshot(doc.data() as Map<String, dynamic>));
         }
       }
     });
@@ -78,8 +82,8 @@ Future<void> getNotifs() async {
     if (globals.prismUser.premium == false) {
       getLastMonthNotifs('free').then((snap) {
         for (final doc in snap.docs) {
-          if (doc.data()['modifier'] != '' || doc.data()['modifier'] != null) {
-            box.add(InAppNotif.fromSnapshot(doc.data()));
+          if ((doc.data() as Map<String, dynamic>)['modifier'] != '' || (doc.data() as Map<String, dynamic>)['modifier'] != null) {
+            box.add(InAppNotif.fromSnapshot(doc.data() as Map<String, dynamic>));
           }
         }
       });
@@ -87,30 +91,30 @@ Future<void> getNotifs() async {
     if (globals.prismUser.premium == true) {
       getLastMonthNotifs('premium').then((snap) {
         for (final doc in snap.docs) {
-          if (doc.data()['modifier'] != '' || doc.data()['modifier'] != null) {
-            box.add(InAppNotif.fromSnapshot(doc.data()));
+          if ((doc.data() as Map<String, dynamic>)['modifier'] != '' || (doc.data() as Map<String, dynamic>)['modifier'] != null) {
+            box.add(InAppNotif.fromSnapshot(doc.data() as Map<String, dynamic>));
           }
         }
       });
     }
     getLastMonthNotifs('all').then((snap) {
       for (final doc in snap.docs) {
-        if (doc.data()['modifier'] != '' || doc.data()['modifier'] != null) {
-          box.add(InAppNotif.fromSnapshot(doc.data()));
+        if ((doc.data() as Map<String, dynamic>)['modifier'] != '' || (doc.data() as Map<String, dynamic>)['modifier'] != null) {
+          box.add(InAppNotif.fromSnapshot(doc.data() as Map<String, dynamic>));
         }
       }
     });
     getLastMonthNotifs(globals.currentAppVersion).then((snap) {
       for (final doc in snap.docs) {
-        if (doc.data()['modifier'] != '' || doc.data()['modifier'] != null) {
-          box.add(InAppNotif.fromSnapshot(doc.data()));
+        if ((doc.data() as Map<String, dynamic>)['modifier'] != '' || (doc.data() as Map<String, dynamic>)['modifier'] != null) {
+          box.add(InAppNotif.fromSnapshot(doc.data() as Map<String, dynamic>));
         }
       }
     });
     getLastMonthNotifs(globals.prismUser.email).then((snap) {
       for (final doc in snap.docs) {
-        if (doc.data()['modifier'] != '' || doc.data()['modifier'] != null) {
-          box.add(InAppNotif.fromSnapshot(doc.data()));
+        if ((doc.data() as Map<String, dynamic>)['modifier'] != '' || (doc.data() as Map<String, dynamic>)['modifier'] != null) {
+          box.add(InAppNotif.fromSnapshot(doc.data() as Map<String, dynamic>));
         }
       }
     });

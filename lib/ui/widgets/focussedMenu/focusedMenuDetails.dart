@@ -594,20 +594,20 @@ class _FocusedMenuDetailsState extends State<FocusedMenuDetails> {
                                               ),
                                               backgroundColor: Colors.black,
                                               label: Text(
-                                                Provider.of<ProfileWallProvider>(
+                                                (Provider.of<ProfileWallProvider>(
                                                             context,
                                                             listen: false)
                                                         .profileWalls![
                                                             widget.index]
-                                                        .data()["by"]
+                                                        .data() as Map<String,dynamic>)["by"]
                                                         .toString()[0]
                                                         .toUpperCase() +
-                                                    Provider.of<ProfileWallProvider>(
+                                                    (Provider.of<ProfileWallProvider>(
                                                             context,
                                                             listen: false)
                                                         .profileWalls![
                                                             widget.index]
-                                                        .data()["by"]
+                                                        .data() as Map<String,dynamic>)["by"]
                                                         .toString()
                                                         .substring(1),
                                                 style: Theme.of(context)
@@ -622,11 +622,11 @@ class _FocusedMenuDetailsState extends State<FocusedMenuDetails> {
                                             padding: const EdgeInsets.fromLTRB(
                                                 0, 5, 0, 10),
                                             child: Text(
-                                              Provider.of<ProfileWallProvider>(
+                                              (Provider.of<ProfileWallProvider>(
                                                       context,
                                                       listen: false)
                                                   .profileWalls![widget.index]
-                                                  .data()["id"]
+                                                  .data() as Map<String,dynamic>)["id"]
                                                   .toString()
                                                   .toUpperCase(),
                                               style: Theme.of(context)
@@ -647,11 +647,11 @@ class _FocusedMenuDetailsState extends State<FocusedMenuDetails> {
                                               ),
                                               const SizedBox(width: 10),
                                               Text(
-                                                Provider.of<ProfileWallProvider>(
+                                                (Provider.of<ProfileWallProvider>(
                                                         context,
                                                         listen: false)
                                                     .profileWalls![widget.index]
-                                                    .data()["size"]
+                                                    .data() as Map<String,dynamic>)["size"]
                                                     .toString(),
                                                 style: Theme.of(context)
                                                     .textTheme
@@ -672,11 +672,11 @@ class _FocusedMenuDetailsState extends State<FocusedMenuDetails> {
                                               ),
                                               const SizedBox(width: 10),
                                               Text(
-                                                Provider.of<ProfileWallProvider>(
+                                                (Provider.of<ProfileWallProvider>(
                                                         context,
                                                         listen: false)
                                                     .profileWalls![widget.index]
-                                                    .data()["resolution"]
+                                                    .data() as Map<String,dynamic>)["resolution"]
                                                     .toString(),
                                                 style: Theme.of(context)
                                                     .textTheme
@@ -776,20 +776,20 @@ class _FocusedMenuDetailsState extends State<FocusedMenuDetails> {
                                                   ),
                                                   backgroundColor: Colors.black,
                                                   label: Text(
-                                                    Provider.of<UserData.UserProfileProvider>(
+                                                    (Provider.of<UserData.UserProfileProvider>(
                                                                 context)
                                                             .userProfileWalls![
                                                                 widget.index]
-                                                            .data()["by"]
+                                                            .data() as Map<String,dynamic>)["by"]
                                                             .toString()[0]
                                                             .toUpperCase() +
-                                                        Provider.of<
+                                                        (Provider.of<
                                                                     UserData
                                                                         .UserProfileProvider>(
                                                                 context)
                                                             .userProfileWalls![
                                                                 widget.index]
-                                                            .data()["by"]
+                                                            .data() as Map<String,dynamic>)["by"]
                                                             .toString()
                                                             .substring(1),
                                                     style: Theme.of(context)
@@ -805,13 +805,13 @@ class _FocusedMenuDetailsState extends State<FocusedMenuDetails> {
                                                     const EdgeInsets.fromLTRB(
                                                         0, 5, 0, 10),
                                                 child: Text(
-                                                  Provider.of<
+                                                  (Provider.of<
                                                               UserData
                                                                   .UserProfileProvider>(
                                                           context)
                                                       .userProfileWalls![
                                                           widget.index]
-                                                      .data()["id"]
+                                                      .data() as Map<String,dynamic>)["id"]
                                                       .toString()
                                                       .toUpperCase(),
                                                   style: Theme.of(context)
@@ -833,13 +833,13 @@ class _FocusedMenuDetailsState extends State<FocusedMenuDetails> {
                                                   ),
                                                   const SizedBox(width: 10),
                                                   Text(
-                                                    Provider.of<
+                                                    (Provider.of<
                                                                 UserData
                                                                     .UserProfileProvider>(
                                                             context)
                                                         .userProfileWalls![
                                                             widget.index]
-                                                        .data()["size"]
+                                                        .data() as Map<String,dynamic>)["size"]
                                                         .toString(),
                                                     style: Theme.of(context)
                                                         .textTheme
@@ -861,13 +861,13 @@ class _FocusedMenuDetailsState extends State<FocusedMenuDetails> {
                                                   ),
                                                   const SizedBox(width: 10),
                                                   Text(
-                                                    Provider.of<
+                                                    (Provider.of<
                                                                 UserData
                                                                     .UserProfileProvider>(
                                                             context)
                                                         .userProfileWalls![
                                                             widget.index]
-                                                        .data()["resolution"]
+                                                        .data() as Map<String,dynamic>)["resolution"]
                                                         .toString(),
                                                     style: Theme.of(context)
                                                         .textTheme
@@ -2158,10 +2158,10 @@ class _FocusedMenuDetailsState extends State<FocusedMenuDetails> {
                                 .profileWalls![widget.index]["wallpaper_url"]
                                 .toString()
                             : widget.provider == "UserProfileWall"
-                                ? Provider.of<UserData.UserProfileProvider>(
+                                ? (Provider.of<UserData.UserProfileProvider>(
                                         context)
                                     .userProfileWalls![widget.index]
-                                    .data()["wallpaper_url"]
+                                    .data() as Map<String,dynamic>)["wallpaper_url"]
                                     .toString()
                                 : widget.provider == "Pexels"
                                     ? PData
@@ -2206,7 +2206,7 @@ class _FocusedMenuDetailsState extends State<FocusedMenuDetails> {
                               prism: Provider.of<ProfileWallProvider>(context,
                                       listen: false)
                                   .profileWalls![widget.index]
-                                  .data(),
+                                  .data() as Map,
                               trash: false,
                             )
                           : widget.provider == "UserProfileWall"
@@ -2220,7 +2220,7 @@ class _FocusedMenuDetailsState extends State<FocusedMenuDetails> {
                                       Provider.of<UserData.UserProfileProvider>(
                                               context)
                                           .userProfileWalls![widget.index]
-                                          .data(),
+                                          .data() as Map,
                                   trash: false,
                                 )
                               : widget.provider == "Pexels"
@@ -2271,10 +2271,10 @@ class _FocusedMenuDetailsState extends State<FocusedMenuDetails> {
                                 .profileWalls![widget.index]["wallpaper_url"]
                                 .toString()
                             : widget.provider == "UserProfileWall"
-                                ? Provider.of<UserData.UserProfileProvider>(
+                                ? (Provider.of<UserData.UserProfileProvider>(
                                         context)
                                     .userProfileWalls![widget.index]
-                                    .data()["wallpaper_url"]
+                                    .data() as Map<String,dynamic>)["wallpaper_url"]
                                     .toString()
                                 : widget.provider == "Pexels"
                                     ? PData

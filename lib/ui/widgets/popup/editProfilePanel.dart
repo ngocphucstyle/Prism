@@ -377,9 +377,9 @@ class _EditProfilePanelState extends State<EditProfilePanel> {
             color: Theme.of(context).accentColor),
       ),
       actions: [
-        FlatButton(
+        FloatingActionButton(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          color: Theme.of(context).hintColor,
+          backgroundColor: Theme.of(context).hintColor,
           onPressed: () async {
             Navigator.pop(context);
             await remove();
@@ -392,9 +392,9 @@ class _EditProfilePanelState extends State<EditProfilePanel> {
             ),
           ),
         ),
-        FlatButton(
+        FloatingActionButton(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          color: Theme.of(context).errorColor,
+          backgroundColor: Theme.of(context).errorColor,
           onPressed: () {
             Navigator.of(context).pop();
           },

@@ -140,8 +140,8 @@ class _ColorGridState extends State<ColorGrid> with TickerProviderStateMixin {
               crossAxisSpacing: 8),
           itemBuilder: (context, index) {
             if (index == PData.wallsC.length - 1) {
-              return FlatButton(
-                  color: Provider.of<ThemeModeExtended>(context)
+              return FloatingActionButton(
+                  backgroundColor: Provider.of<ThemeModeExtended>(context)
                               .getCurrentModeStyle(
                                   MediaQuery.of(context).platformBrightness) ==
                           "Dark"

@@ -215,9 +215,9 @@ void googleSignInPopUp(BuildContext context, Function func) {
       ),
     ),
     actions: [
-      FlatButton(
+      FloatingActionButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-        color: Theme.of(context).primaryColor,
+        backgroundColor: Theme.of(context).primaryColor,
         onPressed: () {
           Navigator.of(context).pop();
         },
@@ -229,9 +229,9 @@ void googleSignInPopUp(BuildContext context, Function func) {
           ),
         ),
       ),
-      FlatButton(
+      FloatingActionButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-        color: Theme.of(context).errorColor,
+        backgroundColor: Theme.of(context).errorColor,
         onPressed: () {
           Navigator.of(context).pop();
           showDialog(

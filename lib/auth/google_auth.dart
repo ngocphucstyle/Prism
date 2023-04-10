@@ -28,26 +28,40 @@ class GoogleAuth {
   bool isLoading = false;
 
   Future<String> signInWithGoogle() async {
+    print("sign In with google");
     isLoading = true;
     prefs = await Hive.openBox('prefs');
-    final GoogleSignInAccount? googleSignInAccount =
-        await googleSignIn.signIn();
-    final GoogleSignInAuthentication googleSignInAuthentication =
-        await googleSignInAccount!.authentication;
+    UserCredential authResult;
+    User? user;
+    try {
+      print("phuc try");
+      final GoogleSignInAccount? googleSignInAccount =
+          await googleSignIn.signIn();
+            print("phuc 1");
+      final GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount!.authentication;
+            print("phuc 2");
 
-    final AuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleSignInAuthentication.accessToken,
-      idToken: googleSignInAuthentication.idToken,
-    );
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
+      );
+            print("phuc 3");
 
-    final UserCredential authResult =
-        await _auth.signInWithCredential(credential);
-    final User? user = authResult.user;
+      authResult = await _auth.signInWithCredential(credential);
+      user = authResult.user;
+    } catch (e) {
+      print("phuc catch");
+      print(e.toString());
+    }
+    print("Phuc check");
+
     assert(user!.email != null);
     assert(user!.displayName != null);
     assert(user!.photoURL != null);
     name = user!.displayName;
     email = user.email;
+    print("user nè ${user}");
 
     if (user != null) {
       final List<DocumentSnapshot?> usersData = await getUsersData(user);
@@ -121,7 +135,7 @@ class GoogleAuth {
       await prefs.put(main.userHiveKey, globals.prismUser);
       isLoading = false;
     }
-    home.f.subscribeToTopic(user.email!.split("@")[0]);
+    // home.f.subscribeToTopic(user.email!.split("@")[0]);
     assert(!user.isAnonymous);
     assert(await user.getIdToken() != null);
     final User? currentUser = _auth.currentUser;

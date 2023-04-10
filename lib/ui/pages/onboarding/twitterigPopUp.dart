@@ -1,3 +1,5 @@
+// ignore_for_file: cast_nullable_to_non_nullable
+
 import 'dart:convert';
 
 import 'package:Prism/auth/google_auth.dart';
@@ -934,8 +936,8 @@ class FollowHeaderCard extends StatelessWidget {
                       if (!snapshot.hasData) {
                         return Container();
                       } else {
-                        final List following = snapshot.data!.docs[0]
-                                .data()['following'] as List? ??
+                        final List following = (snapshot.data!.docs[0]
+                                .data() as Map<String,dynamic>)['following'] as List? ??
                             [];
                         if (following.contains(email)) {
                           return Padding(
@@ -974,8 +976,8 @@ class FollowHeaderCard extends StatelessWidget {
                                   if (value.docs.isEmpty ||
                                       value.docs == null) {
                                   } else {
-                                    final List followers = value.docs[0]
-                                            .data()['followers'] as List? ??
+                                    final List followers = (value.docs[0]
+                                            .data() as Map<String,dynamic>)['followers'] as List? ??
                                         [];
                                     followers.add(globals.prismUser.email);
                                     value.docs[0].reference

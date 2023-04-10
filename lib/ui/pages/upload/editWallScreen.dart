@@ -315,56 +315,69 @@ class _EditWallScreenState extends State<EditWallScreen> {
             Icons.flip,
             color: Theme.of(context).accentColor,
           ),
-          title: Text(
-            'Flip',
-            style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                  color: Theme.of(context).accentColor,
-                ),
-          ),
+          label: 'Flip',
+
+          // title: Text(
+          //   'Flip',
+          //   style: Theme.of(context).textTheme.bodyText2!.copyWith(
+          //         color: Theme.of(context).accentColor,
+          //       ),
+          // ),
         ),
         BottomNavigationBarItem(
           icon: Icon(
             Icons.rotate_left,
             color: Theme.of(context).accentColor,
           ),
-          title: Text(
-            'Rotate Left',
-            style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                  color: Theme.of(context).accentColor,
-                ),
-          ),
+          label: 'Rotate Left',
+          // title: Text(
+          //   'Rotate Left',
+          //   style: Theme.of(context).textTheme.bodyText2!.copyWith(
+          //         color: Theme.of(context).accentColor,
+          //       ),
+          // ),
         ),
         BottomNavigationBarItem(
           icon: Icon(
             Icons.rotate_right,
             color: Theme.of(context).accentColor,
           ),
-          title: Text(
-            'Rotate Right',
-            style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                  color: Theme.of(context).accentColor,
-                ),
-          ),
+          label: 'Rotate Right',
+          // title: Text(
+          //   'Rotate Right',
+          //   style: Theme.of(context).textTheme.bodyText2!.copyWith(
+          //         color: Theme.of(context).accentColor,
+          //       ),
+          // ),
         ),
         BottomNavigationBarItem(
           icon: Icon(
             Icons.crop,
             color: Theme.of(context).accentColor,
           ),
-          title: Text(
-            cropRatio == 1 / 2
-                ? "9:18"
-                : cropRatio == 9 / 16
-                    ? "9:16"
-                    : cropRatio == 9 / 21
-                        ? "9:21"
-                        : cropRatio == 9 / 19.5
-                            ? "9:19.5"
-                            : "9:18",
-            style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                  color: Theme.of(context).accentColor,
-                ),
-          ),
+          label: cropRatio == 1 / 2
+              ? "9:18"
+              : cropRatio == 9 / 16
+                  ? "9:16"
+                  : cropRatio == 9 / 21
+                      ? "9:21"
+                      : cropRatio == 9 / 19.5
+                          ? "9:19.5"
+                          : "9:18",
+          // title: Text(
+          //   cropRatio == 1 / 2
+          //       ? "9:18"
+          //       : cropRatio == 9 / 16
+          //           ? "9:16"
+          //           : cropRatio == 9 / 21
+          //               ? "9:21"
+          //               : cropRatio == 9 / 19.5
+          //                   ? "9:19.5"
+          //                   : "9:18",
+          //   style: Theme.of(context).textTheme.bodyText2!.copyWith(
+          //         color: Theme.of(context).accentColor,
+          //       ),
+          // ),
         ),
       ],
       onTap: (int index) {
@@ -400,7 +413,7 @@ class _EditWallScreenState extends State<EditWallScreen> {
 
     final ImageEditorOption option = ImageEditorOption();
 
-    option.addOption(ClipOption.fromRect(rect));
+    option.addOption(ClipOption.fromRect(rect!));
     option.addOption(
         FlipOption(horizontal: flipHorizontal, vertical: flipVertical));
     if (action.hasRotateAngle) {
@@ -416,15 +429,15 @@ class _EditWallScreenState extends State<EditWallScreen> {
     logger.d(const JsonEncoder.withIndent('  ').convert(option.toJson()));
 
     final DateTime start = DateTime.now();
-    final Uint8List result = await ImageEditor.editImage(
+    final Uint8List? result = await ImageEditor.editImage(
       image: img,
       imageEditorOption: option,
     );
 
-    logger.d('result.length = ${result.length}');
+    logger.d('result.length = ${result?.length}');
 
     final Duration diff = DateTime.now().difference(start);
-    image!.writeAsBytesSync(result);
+    image!.writeAsBytesSync(result!);
     logger.d('image_editor time : $diff');
     if (navStack.length > 1) navStack.removeLast();
     logger.d(navStack.toString());

@@ -28,9 +28,9 @@ class CopyrightPopUp extends StatelessWidget {
         ),
       ),
       actions: [
-        FlatButton(
+        FloatingActionButton(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          color: Colors.transparent,
+          backgroundColor: Colors.transparent,
           onPressed: () {
             Navigator.pop(context);
             setup == true
@@ -46,9 +46,9 @@ class CopyrightPopUp extends StatelessWidget {
                     : Theme.of(context).errorColor,
               )),
         ),
-        FlatButton(
+        FloatingActionButton(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          color: Theme.of(context).errorColor,
+          backgroundColor: Theme.of(context).errorColor,
           onPressed: () {
             Navigator.pop(context);
           },

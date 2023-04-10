@@ -113,11 +113,11 @@ class _SearchGridState extends State<SearchGrid> with TickerProviderStateMixin {
     final Animation<double> offsetAnimation = Tween(begin: 0.0, end: 8.0)
         .chain(CurveTween(curve: Curves.easeOutCubic))
         .animate(shakeController)
-          ..addStatusListener((status) {
-            if (status == AnimationStatus.completed) {
-              shakeController.reverse();
-            }
-          });
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          shakeController.reverse();
+        }
+      });
     final ScrollController? controller =
         InheritedDataProvider.of(context)!.scrollController;
     return RefreshIndicator(
@@ -168,8 +168,8 @@ class _SearchGridState extends State<SearchGrid> with TickerProviderStateMixin {
           itemBuilder: (context, index) {
             if (widget.selectedProvider == "WallHaven") {
               if (index == wData.wallsS.length - 1 && index >= 23) {
-                return FlatButton(
-                    color: Provider.of<ThemeModeExtended>(context)
+                return FloatingActionButton(
+                    backgroundColor: Provider.of<ThemeModeExtended>(context)
                                 .getCurrentModeStyle(MediaQuery.of(context)
                                     .platformBrightness) ==
                             "Dark"
@@ -194,8 +194,8 @@ class _SearchGridState extends State<SearchGrid> with TickerProviderStateMixin {
               }
             } else if (widget.selectedProvider == "Pexels") {
               if (index == pData.wallsPS.length - 1 && index >= 23) {
-                return FlatButton(
-                    color: Provider.of<ThemeModeExtended>(context)
+                return FloatingActionButton(
+                    backgroundColor: Provider.of<ThemeModeExtended>(context)
                                 .getCurrentModeStyle(MediaQuery.of(context)
                                     .platformBrightness) ==
                             "Dark"

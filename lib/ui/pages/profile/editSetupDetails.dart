@@ -64,58 +64,58 @@ class _EditSetupReviewScreenState extends State<EditSetupReviewScreen> {
   void initState() {
     super.initState();
     setupDoc = widget.arguments![0] as DocumentSnapshot;
-    imageURL = setupDoc.data()!["image"].toString();
+    imageURL = (setupDoc.data() as Map<String,dynamic>) ["image"].toString();
     groupWidgetValue = 0;
     setupName =
-        TextEditingController(text: setupDoc.data()!["name"].toString());
-    id = setupDoc.data()!["id"].toString();
+        TextEditingController(text: (setupDoc.data() as Map<String,dynamic>) ["name"].toString());
+    id = (setupDoc.data() as Map<String,dynamic>) ["id"].toString();
     setupDesc =
-        TextEditingController(text: setupDoc.data()!["desc"].toString());
-    iconName = TextEditingController(text: setupDoc.data()!["icon"].toString());
+        TextEditingController(text: (setupDoc.data() as Map<String,dynamic>) ["desc"].toString());
+    iconName = TextEditingController(text: (setupDoc.data() as Map<String,dynamic>) ["icon"].toString());
     iconURL =
-        TextEditingController(text: setupDoc.data()!["icon_url"].toString());
+        TextEditingController(text: (setupDoc.data() as Map<String,dynamic>) ["icon_url"].toString());
     widgetName1 =
-        TextEditingController(text: setupDoc.data()!["widget"].toString());
+        TextEditingController(text: (setupDoc.data() as Map<String,dynamic>) ["widget"].toString());
     widgetURL1 =
-        TextEditingController(text: setupDoc.data()!["widget_url"].toString());
-    if ("${setupDoc.data()!["wallpaper_url"]}" != "") {
-      if ("${setupDoc.data()!["wallpaper_url"]}"[0] != "[") {
-        if ("${setupDoc.data()!["wall_id"]}" != "" &&
-            "${setupDoc.data()!["wall_id"]}" != null) {
+        TextEditingController(text: (setupDoc.data() as Map<String,dynamic>) ["widget_url"].toString());
+    if ("${(setupDoc.data() as Map<String,dynamic>) ["wallpaper_url"]}" != "") {
+      if ("${(setupDoc.data() as Map<String,dynamic>) ["wallpaper_url"]}"[0] != "[") {
+        if ("${(setupDoc.data() as Map<String,dynamic>) ["wall_id"]}" != "" &&
+            "${(setupDoc.data() as Map<String,dynamic>) ["wall_id"]}" != null) {
           wallpaperUploaded = true;
-          wallpaperUploadLink = setupDoc.data()!["wallpaper_url"].toString();
-          wallpaperId = setupDoc.data()!["wall_id"].toString();
+          wallpaperUploadLink = (setupDoc.data() as Map<String,dynamic>) ["wallpaper_url"].toString();
+          wallpaperId = (setupDoc.data() as Map<String,dynamic>) ["wall_id"].toString();
           groupValue = 1;
         } else {
           wallpaperUrl = TextEditingController(
-              text: setupDoc.data()!["wallpaper_url"].toString());
+              text: (setupDoc.data() as Map<String,dynamic>) ["wallpaper_url"].toString());
           groupValue = 0;
         }
       } else {
         wallpaperAppName = TextEditingController(
-            text: setupDoc.data()!["wallpaper_url"][0].toString());
+            text: (setupDoc.data() as Map<String,dynamic>) ["wallpaper_url"][0].toString());
         wallpaperAppWallName = TextEditingController(
-            text: setupDoc.data()!["wallpaper_url"][2].toString());
+            text: (setupDoc.data() as Map<String,dynamic>) ["wallpaper_url"][2].toString());
         wallpaperAppLink = TextEditingController(
-            text: setupDoc.data()!["wallpaper_url"][1].toString());
+            text: (setupDoc.data() as Map<String,dynamic>) ["wallpaper_url"][1].toString());
         groupValue = 2;
       }
     } else {
       wallpaperUrl = TextEditingController(
-          text: setupDoc.data()!["wallpaper_url"].toString());
+          text: (setupDoc.data() as Map<String,dynamic>) ["wallpaper_url"].toString());
       groupValue = 0;
     }
     widgetName2 =
-        TextEditingController(text: setupDoc.data()!["widget2"].toString());
+        TextEditingController(text: (setupDoc.data() as Map<String,dynamic>) ["widget2"].toString());
     widgetURL2 =
-        TextEditingController(text: setupDoc.data()!["widget_url2"].toString());
+        TextEditingController(text: (setupDoc.data() as Map<String,dynamic>) ["widget_url2"].toString());
     isUploading = false;
     isProcessing = false;
-    wallpaperProvider = setupDoc.data()!["wallpaper_provider"].toString();
-    wallpaperThumb = setupDoc.data()!["wallpaper_thumb"].toString();
-    review = setupDoc.data()!["review"] as bool?;
-    secondWidgetAdded = "${setupDoc.data()!["widget2"]}" != "" &&
-        "${setupDoc.data()!["widget2"]}" != null;
+    wallpaperProvider = (setupDoc.data() as Map<String,dynamic>) ["wallpaper_provider"].toString();
+    wallpaperThumb = (setupDoc.data() as Map<String,dynamic>) ["wallpaper_thumb"].toString();
+    review = (setupDoc.data() as Map<String,dynamic>) ["review"] as bool?;
+    secondWidgetAdded = "${(setupDoc.data() as Map<String,dynamic>) ["widget2"]}" != "" &&
+        "${(setupDoc.data() as Map<String,dynamic>) ["widget2"]}" != null;
   }
 
   final Map<int, Widget> logoWidgets = <int, Widget>{

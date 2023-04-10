@@ -1,3 +1,5 @@
+// ignore_for_file: cast_nullable_to_non_nullable
+
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui';
@@ -117,15 +119,15 @@ class _UserProfileWallViewScreenState extends State<UserProfileWallViewScreen>
     isLoading = true;
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       updateViews(
-          Provider.of<user_data.UserProfileProvider>(context, listen: false)
+          (Provider.of<user_data.UserProfileProvider>(context, listen: false)
               .userProfileWalls![index]
-              .data()["id"]
+              .data() as Map<String,dynamic>)["id"]
               .toString()
               .toUpperCase());
       _futureView = getViews(
-          Provider.of<user_data.UserProfileProvider>(context, listen: false)
+          (Provider.of<user_data.UserProfileProvider>(context, listen: false)
               .userProfileWalls![index]
-              .data()["id"]
+              .data() as Map<String,dynamic>)["id"]
               .toString()
               .toUpperCase());
     });
@@ -279,12 +281,12 @@ class _UserProfileWallViewScreenState extends State<UserProfileWallViewScreen>
                                         child: Row(
                                           children: [
                                             Text(
-                                              Provider.of<
+                                              (Provider.of<
                                                           user_data
                                                               .UserProfileProvider>(
                                                       context)
                                                   .userProfileWalls![index]
-                                                  .data()["id"]
+                                                  .data() as Map<String,dynamic>)["id"]
                                                   .toString()
                                                   .toUpperCase(),
                                               style: Theme.of(context)
@@ -381,12 +383,12 @@ class _UserProfileWallViewScreenState extends State<UserProfileWallViewScreen>
                                         ),
                                         const SizedBox(width: 10),
                                         Text(
-                                          Provider.of<
+                                          (Provider.of<
                                                       user_data
                                                           .UserProfileProvider>(
                                                   context)
                                               .userProfileWalls![index]
-                                              .data()["by"]
+                                              .data() as Map<String,dynamic>)["by"]
                                               .toString(),
                                           style: Theme.of(context)
                                               .textTheme
@@ -409,12 +411,12 @@ class _UserProfileWallViewScreenState extends State<UserProfileWallViewScreen>
                                         ),
                                         const SizedBox(width: 10),
                                         Text(
-                                          Provider.of<
+                                          (Provider.of<
                                                       user_data
                                                           .UserProfileProvider>(
                                                   context)
                                               .userProfileWalls![index]
-                                              .data()["desc"]
+                                              .data() as Map<String,dynamic>)["desc"]
                                               .toString(),
                                           style: Theme.of(context)
                                               .textTheme
@@ -437,12 +439,12 @@ class _UserProfileWallViewScreenState extends State<UserProfileWallViewScreen>
                                         ),
                                         const SizedBox(width: 10),
                                         Text(
-                                          Provider.of<
+                                          (Provider.of<
                                                       user_data
                                                           .UserProfileProvider>(
                                                   context)
                                               .userProfileWalls![index]
-                                              .data()["size"]
+                                              .data() as Map<String,dynamic>)["size"]
                                               .toString(),
                                           style: Theme.of(context)
                                               .textTheme
@@ -462,12 +464,12 @@ class _UserProfileWallViewScreenState extends State<UserProfileWallViewScreen>
                                     Row(
                                       children: [
                                         Text(
-                                          Provider.of<
+                                          (Provider.of<
                                                       user_data
                                                           .UserProfileProvider>(
                                                   context)
                                               .userProfileWalls![index]
-                                              .data()["resolution"]
+                                              .data() as Map<String,dynamic>)["resolution"]
                                               .toString(),
                                           style: Theme.of(context)
                                               .textTheme
@@ -490,12 +492,12 @@ class _UserProfileWallViewScreenState extends State<UserProfileWallViewScreen>
                                     Row(
                                       children: [
                                         Text(
-                                          Provider.of<
+                                          (Provider.of<
                                                       user_data
                                                           .UserProfileProvider>(
                                                   context)
                                               .userProfileWalls![index]
-                                              .data()["wallpaper_provider"]
+                                              .data() as Map<String,dynamic>)["wallpaper_provider"]
                                               .toString(),
                                           style: Theme.of(context)
                                               .textTheme
@@ -529,73 +531,73 @@ class _UserProfileWallViewScreenState extends State<UserProfileWallViewScreen>
                                 colorChanged: colorChanged,
                                 link: screenshotTaken
                                     ? _imageFile.path
-                                    : Provider.of<
+                                    : (Provider.of<
                                             user_data
                                                 .UserProfileProvider>(context)
                                         .userProfileWalls![index]
-                                        .data()["wallpaper_url"]
+                                        .data() as Map<String,dynamic>)["wallpaper_url"]
                                         .toString(),
                               ),
                               SetWallpaperButton(
                                 colorChanged: colorChanged,
                                 url: screenshotTaken
                                     ? _imageFile.path
-                                    : Provider.of<
+                                    : (Provider.of<
                                             user_data
                                                 .UserProfileProvider>(context)
                                         .userProfileWalls![index]
-                                        .data()["wallpaper_url"]
+                                        .data() as Map<String,dynamic>)["wallpaper_url"]
                                         .toString(),
                               ),
                               FavouriteWallpaperButton(
-                                id: Provider.of<user_data.UserProfileProvider>(
+                                id: (Provider.of<user_data.UserProfileProvider>(
                                         context)
                                     .userProfileWalls![index]
-                                    .data()["id"]
+                                    .data() as Map<String,dynamic>)["id"]
                                     .toString(),
                                 provider:
-                                    Provider.of<user_data.UserProfileProvider>(
+                                    (Provider.of<user_data.UserProfileProvider>(
                                             context)
                                         .userProfileWalls![index]
-                                        .data()["wallpaper_provider"]
+                                        .data() as Map<String,dynamic>)["wallpaper_provider"]
                                         .toString(),
                                 prism:
                                     Provider.of<user_data.UserProfileProvider>(
                                             context)
                                         .userProfileWalls![index]
-                                        .data(),
+                                        .data() as Map,
                                 trash: false,
                               ),
                               ShareButton(
-                                  id: Provider.of<
+                                  id: (Provider.of<
                                           user_data
                                               .UserProfileProvider>(context)
                                       .userProfileWalls![index]
-                                      .data()["id"]
+                                      .data() as Map<String,dynamic>)["id"]
                                       .toString(),
-                                  provider: Provider.of<
+                                  provider: (Provider.of<
                                           user_data
                                               .UserProfileProvider>(context)
                                       .userProfileWalls![index]
-                                      .data()["wallpaper_provider"]
+                                      .data() as Map<String,dynamic>)["wallpaper_provider"]
                                       .toString(),
-                                  url: Provider.of<
+                                  url: (Provider.of<
                                           user_data
                                               .UserProfileProvider>(context)
                                       .userProfileWalls![index]
-                                      .data()["wallpaper_url"]
+                                      .data() as Map<String,dynamic>)["wallpaper_url"]
                                       .toString(),
-                                  thumbUrl: Provider.of<
+                                  thumbUrl: (Provider.of<
                                           user_data
                                               .UserProfileProvider>(context)
                                       .userProfileWalls![index]
-                                      .data()["wallpaper_thumb"]
+                                      .data() as Map<String,dynamic>)["wallpaper_thumb"]
                                       .toString()),
                               EditButton(
-                                url: Provider.of<user_data.UserProfileProvider>(
+                                url: (Provider.of<user_data.UserProfileProvider>(
                                         context)
                                     .userProfileWalls![index]
-                                    .data()["wallpaper_url"]
+                                    .data() as Map<String,dynamic>)["wallpaper_url"]
                                     .toString(),
                               ),
                             ],
@@ -634,10 +636,10 @@ class _UserProfileWallViewScreenState extends State<UserProfileWallViewScreen>
                           shakeController.forward(from: 0.0);
                         },
                         child: CachedNetworkImage(
-                          imageUrl: Provider.of<user_data.UserProfileProvider>(
+                          imageUrl: (Provider.of<user_data.UserProfileProvider>(
                                   context)
                               .userProfileWalls![index]
-                              .data()["wallpaper_url"]
+                              .data() as Map<String,dynamic>)["wallpaper_url"]
                               .toString(),
                           imageBuilder: (context, imageProvider) => Screenshot(
                             controller: screenshotController,
@@ -713,11 +715,11 @@ class _UserProfileWallViewScreenState extends State<UserProfileWallViewScreen>
                         EdgeInsets.fromLTRB(8.0, globals.notchSize! + 8, 8, 8),
                     child: IconButton(
                       onPressed: () {
-                        final link = Provider.of<user_data.UserProfileProvider>(
+                        final link = (Provider.of<user_data.UserProfileProvider>(
                                 context,
                                 listen: false)
                             .userProfileWalls![index]
-                            .data()["wallpaper_url"];
+                            .data() as Map<String,dynamic>)["wallpaper_url"];
                         Navigator.push(
                             context,
                             PageRouteBuilder(

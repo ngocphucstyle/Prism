@@ -114,10 +114,11 @@ class _SharePrismScreenState extends State<SharePrismScreen> {
                 const SizedBox(
                   height: 10,
                 ),
-                FlatButton(
-                  disabledColor: Theme.of(context).accentColor.withOpacity(0.5),
+                FloatingActionButton(
+
+                  // disabledColor: Theme.of(context).accentColor.withOpacity(0.5),
                   shape: const StadiumBorder(),
-                  color: link == ""
+                  backgroundColor: link == ""
                       ? Theme.of(context).accentColor.withOpacity(0.5)
                       : Theme.of(context).errorColor,
                   onPressed: link == ""

@@ -113,15 +113,15 @@ class _ProfileWallViewScreenState extends State<ProfileWallViewScreen>
     index = widget.arguments![0] as int;
     thumb = widget.arguments![1].toString();
     isLoading = true;
-    updateViews(Provider.of<ProfileWallProvider>(context, listen: false)
+    updateViews((Provider.of<ProfileWallProvider>(context, listen: false)
         .profileWalls![index]
-        .data()["id"]
+        .data() as Map<String,dynamic>)["id"]
         .toString()
         .toUpperCase());
     _futureView = getViews(
-        Provider.of<ProfileWallProvider>(context, listen: false)
+        (Provider.of<ProfileWallProvider>(context, listen: false)
             .profileWalls![index]
-            .data()["id"]
+            .data() as Map<String,dynamic>)["id"]
             .toString()
             .toUpperCase());
     _updatePaletteGenerator();
@@ -275,11 +275,11 @@ class _ProfileWallViewScreenState extends State<ProfileWallViewScreen>
                                         child: Row(
                                           children: [
                                             Text(
-                                              Provider.of<ProfileWallProvider>(
+                                              (Provider.of<ProfileWallProvider>(
                                                       context,
                                                       listen: false)
                                                   .profileWalls![index]
-                                                  .data()["id"]
+                                                  .data() as Map<String,dynamic>)["id"]
                                                   .toString()
                                                   .toUpperCase(),
                                               style: Theme.of(context)
@@ -376,11 +376,11 @@ class _ProfileWallViewScreenState extends State<ProfileWallViewScreen>
                                         ),
                                         const SizedBox(width: 10),
                                         Text(
-                                          Provider.of<ProfileWallProvider>(
+                                          (Provider.of<ProfileWallProvider>(
                                                   context,
                                                   listen: false)
                                               .profileWalls![index]
-                                              .data()["by"]
+                                              .data() as Map<String,dynamic>)["by"]
                                               .toString(),
                                           style: Theme.of(context)
                                               .textTheme
@@ -403,11 +403,11 @@ class _ProfileWallViewScreenState extends State<ProfileWallViewScreen>
                                         ),
                                         const SizedBox(width: 10),
                                         Text(
-                                          Provider.of<ProfileWallProvider>(
+                                          (Provider.of<ProfileWallProvider>(
                                                   context,
                                                   listen: false)
                                               .profileWalls![index]
-                                              .data()["desc"]
+                                              .data() as Map<String,dynamic>)["desc"]
                                               .toString(),
                                           style: Theme.of(context)
                                               .textTheme
@@ -430,11 +430,11 @@ class _ProfileWallViewScreenState extends State<ProfileWallViewScreen>
                                         ),
                                         const SizedBox(width: 10),
                                         Text(
-                                          Provider.of<ProfileWallProvider>(
+                                          (Provider.of<ProfileWallProvider>(
                                                   context,
                                                   listen: false)
                                               .profileWalls![index]
-                                              .data()["size"]
+                                              .data() as Map<String,dynamic>)["size"]
                                               .toString(),
                                           style: Theme.of(context)
                                               .textTheme
@@ -454,11 +454,11 @@ class _ProfileWallViewScreenState extends State<ProfileWallViewScreen>
                                     Row(
                                       children: [
                                         Text(
-                                          Provider.of<ProfileWallProvider>(
+                                          (Provider.of<ProfileWallProvider>(
                                                   context,
                                                   listen: false)
                                               .profileWalls![index]
-                                              .data()["resolution"]
+                                              .data() as Map<String,dynamic>)["resolution"]
                                               .toString(),
                                           style: Theme.of(context)
                                               .textTheme
@@ -481,11 +481,11 @@ class _ProfileWallViewScreenState extends State<ProfileWallViewScreen>
                                     Row(
                                       children: [
                                         Text(
-                                          Provider.of<ProfileWallProvider>(
+                                          (Provider.of<ProfileWallProvider>(
                                                   context,
                                                   listen: false)
                                               .profileWalls![index]
-                                              .data()["wallpaper_provider"]
+                                              .data() as Map<String,dynamic>)["wallpaper_provider"]
                                               .toString(),
                                           style: Theme.of(context)
                                               .textTheme
@@ -519,68 +519,68 @@ class _ProfileWallViewScreenState extends State<ProfileWallViewScreen>
                                 colorChanged: colorChanged,
                                 link: screenshotTaken
                                     ? _imageFile.path
-                                    : Provider.of<ProfileWallProvider>(context,
+                                    : (Provider.of<ProfileWallProvider>(context,
                                             listen: false)
                                         .profileWalls![index]
-                                        .data()["wallpaper_url"]
+                                        .data() as Map<String,dynamic>)["wallpaper_url"]
                                         .toString(),
                               ),
                               SetWallpaperButton(
                                 colorChanged: colorChanged,
                                 url: screenshotTaken
                                     ? _imageFile.path
-                                    : Provider.of<ProfileWallProvider>(context,
+                                    : (Provider.of<ProfileWallProvider>(context,
                                             listen: false)
                                         .profileWalls![index]
-                                        .data()["wallpaper_url"]
+                                        .data() as Map<String,dynamic>)["wallpaper_url"]
                                         .toString(),
                               ),
                               FavouriteWallpaperButton(
-                                id: Provider.of<ProfileWallProvider>(context,
+                                id: (Provider.of<ProfileWallProvider>(context,
                                         listen: false)
                                     .profileWalls![index]
-                                    .data()["id"]
+                                    .data() as Map<String,dynamic>)["id"]
                                     .toString(),
-                                provider: Provider.of<ProfileWallProvider>(
+                                provider: (Provider.of<ProfileWallProvider>(
                                         context,
                                         listen: false)
                                     .profileWalls![index]
-                                    .data()["wallpaper_provider"]
+                                    .data() as Map<String,dynamic>)["wallpaper_provider"]
                                     .toString(),
                                 prism: Provider.of<ProfileWallProvider>(context,
                                         listen: false)
                                     .profileWalls![index]
-                                    .data(),
+                                    .data() as Map,
                                 trash: false,
                               ),
                               ShareButton(
-                                  id: Provider.of<ProfileWallProvider>(context,
+                                  id: (Provider.of<ProfileWallProvider>(context,
                                           listen: false)
                                       .profileWalls![index]
-                                      .data()["id"]
+                                      .data() as Map<String,dynamic>)["id"]
                                       .toString(),
-                                  provider: Provider.of<ProfileWallProvider>(
+                                  provider: (Provider.of<ProfileWallProvider>(
                                           context,
                                           listen: false)
                                       .profileWalls![index]
-                                      .data()["wallpaper_provider"]
+                                      .data() as Map<String,dynamic>)["wallpaper_provider"]
                                       .toString(),
-                                  url: Provider.of<ProfileWallProvider>(context,
+                                  url: (Provider.of<ProfileWallProvider>(context,
                                           listen: false)
                                       .profileWalls![index]
-                                      .data()["wallpaper_url"]
+                                      .data() as Map<String,dynamic>)["wallpaper_url"]
                                       .toString(),
-                                  thumbUrl: Provider.of<ProfileWallProvider>(
+                                  thumbUrl: (Provider.of<ProfileWallProvider>(
                                           context,
                                           listen: false)
                                       .profileWalls![index]
-                                      .data()["wallpaper_thumb"]
+                                      .data() as Map<String,dynamic>)["wallpaper_thumb"]
                                       .toString()),
                               EditButton(
-                                url: Provider.of<ProfileWallProvider>(context,
+                                url: (Provider.of<ProfileWallProvider>(context,
                                         listen: false)
                                     .profileWalls![index]
-                                    .data()["wallpaper_url"]
+                                    .data() as Map<String,dynamic>)["wallpaper_url"]
                                     .toString(),
                               ),
                             ],
@@ -619,10 +619,10 @@ class _ProfileWallViewScreenState extends State<ProfileWallViewScreen>
                           shakeController.forward(from: 0.0);
                         },
                         child: CachedNetworkImage(
-                          imageUrl: Provider.of<ProfileWallProvider>(context,
+                          imageUrl: (Provider.of<ProfileWallProvider>(context,
                                   listen: false)
                               .profileWalls![index]
-                              .data()["wallpaper_url"]
+                              .data() as Map<String,dynamic>)["wallpaper_url"]
                               .toString(),
                           imageBuilder: (context, imageProvider) => Screenshot(
                             controller: screenshotController,
@@ -697,10 +697,10 @@ class _ProfileWallViewScreenState extends State<ProfileWallViewScreen>
                         EdgeInsets.fromLTRB(8.0, globals.notchSize! + 8, 8, 8),
                     child: IconButton(
                       onPressed: () {
-                        final link = Provider.of<ProfileWallProvider>(context,
+                        final link = (Provider.of<ProfileWallProvider>(context,
                                 listen: false)
                             .profileWalls![index]
-                            .data()["wallpaper_url"];
+                            .data() as Map<String,dynamic>)["wallpaper_url"];
                         Navigator.push(
                             context,
                             PageRouteBuilder(

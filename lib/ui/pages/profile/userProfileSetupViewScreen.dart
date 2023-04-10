@@ -104,11 +104,11 @@ class _UserProfileSetupViewScreenState extends State<UserProfileSetupViewScreen>
     final Animation<double> offsetAnimation = Tween(begin: 0.0, end: 48.0)
         .chain(CurveTween(curve: Curves.easeOutCubic))
         .animate(shakeController)
-          ..addStatusListener((status) {
-            if (status == AnimationStatus.completed) {
-              shakeController.reverse();
-            }
-          });
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          shakeController.reverse();
+        }
+      });
     return WillPopScope(
       onWillPop: onWillPop,
       child: Scaffold(
@@ -196,12 +196,11 @@ class _UserProfileSetupViewScreenState extends State<UserProfileSetupViewScreen>
                                       forward: true,
                                       slideSide: SlideFromSlide.bottom,
                                       child: Text(
-                                        Provider.of<
-                                                    user_data
-                                                        .UserProfileProvider>(
-                                                context)
-                                            .userProfileSetups![index!]
-                                            .data()["name"]
+                                        (Provider.of<user_data.UserProfileProvider>(
+                                                        context)
+                                                    .userProfileSetups![index!]
+                                                    .data()
+                                                as Map<String, dynamic>)["name"]
                                             .toString()
                                             .toUpperCase(),
                                         maxLines: 1,
@@ -225,12 +224,11 @@ class _UserProfileSetupViewScreenState extends State<UserProfileSetupViewScreen>
                                       slideSide: SlideFromSlide.bottom,
                                       delay: const Duration(milliseconds: 50),
                                       child: Text(
-                                        Provider.of<
-                                                    user_data
-                                                        .UserProfileProvider>(
-                                                context)
-                                            .userProfileSetups![index!]
-                                            .data()["desc"]
+                                        (Provider.of<user_data.UserProfileProvider>(
+                                                        context)
+                                                    .userProfileSetups![index!]
+                                                    .data()
+                                                as Map<String, dynamic>)["desc"]
                                             .toString(),
                                         maxLines: 2,
                                         overflow: TextOverflow.fade,
@@ -278,13 +276,13 @@ class _UserProfileSetupViewScreenState extends State<UserProfileSetupViewScreen>
                                               child: Row(
                                                 children: [
                                                   Text(
-                                                    Provider.of<
-                                                                user_data
-                                                                    .UserProfileProvider>(
-                                                            context)
-                                                        .userProfileSetups![
-                                                            index!]
-                                                        .data()["id"]
+                                                    (Provider.of<user_data.UserProfileProvider>(
+                                                                    context)
+                                                                .userProfileSetups![
+                                                                    index!]
+                                                                .data()
+                                                            as Map<String,
+                                                                dynamic>)["id"]
                                                         .toString()
                                                         .toUpperCase(),
                                                     overflow: TextOverflow.fade,
@@ -388,26 +386,22 @@ class _UserProfileSetupViewScreenState extends State<UserProfileSetupViewScreen>
                                           ),
                                           GestureDetector(
                                             onTap: () async {
-                                              await createCopyrightLink(
-                                                  true, context,
+                                              await createCopyrightLink(true, context,
                                                   index: index.toString(),
-                                                  name: Provider.of<
-                                                              user_data
-                                                                  .UserProfileProvider>(
-                                                          context,
-                                                          listen: false)
-                                                      .userProfileSetups![
-                                                          index!]
-                                                      .data()["name"]
+                                                  name: (Provider.of<user_data.UserProfileProvider>(
+                                                                  context,
+                                                                  listen: false)
+                                                              .userProfileSetups![
+                                                                  index!]
+                                                              .data()
+                                                          as Map<String,
+                                                              dynamic>)["name"]
                                                       .toString(),
-                                                  thumbUrl: Provider.of<
-                                                              user_data
-                                                                  .UserProfileProvider>(
-                                                          context,
-                                                          listen: false)
-                                                      .userProfileSetups![
-                                                          index!]
-                                                      .data()["image"]
+                                                  thumbUrl: (Provider.of<user_data.UserProfileProvider>(
+                                                              context,
+                                                              listen: false)
+                                                          .userProfileSetups![index!]
+                                                          .data() as Map<String, dynamic>)["image"]
                                                       .toString());
                                             },
                                             child: Row(
@@ -455,13 +449,13 @@ class _UserProfileSetupViewScreenState extends State<UserProfileSetupViewScreen>
                                                         Alignment.topRight,
                                                     child: ActionChip(
                                                         label: Text(
-                                                          Provider.of<
-                                                                      user_data
-                                                                          .UserProfileProvider>(
-                                                                  context)
-                                                              .userProfileSetups![
-                                                                  index!]
-                                                              .data()["by"]
+                                                          (Provider.of<user_data.UserProfileProvider>(
+                                                                          context)
+                                                                      .userProfileSetups![
+                                                                          index!]
+                                                                      .data()
+                                                                  as Map<String,
+                                                                      dynamic>)["by"]
                                                               .toString(),
                                                           overflow:
                                                               TextOverflow.fade,
@@ -480,15 +474,15 @@ class _UserProfileSetupViewScreenState extends State<UserProfileSetupViewScreen>
                                                                 vertical: 5,
                                                                 horizontal: 5),
                                                         avatar: CircleAvatar(
-                                                          backgroundImage:
-                                                              CachedNetworkImageProvider(Provider
-                                                                      .of<user_data.UserProfileProvider>(
+                                                          backgroundImage: CachedNetworkImageProvider((Provider.of<
+                                                                              user_data.UserProfileProvider>(
                                                                           context)
-                                                                  .userProfileSetups![
-                                                                      index!]
-                                                                  .data()[
-                                                                      "userPhoto"]
-                                                                  .toString()),
+                                                                      .userProfileSetups![
+                                                                          index!]
+                                                                      .data()
+                                                                  as Map<String,
+                                                                      dynamic>)["userPhoto"]
+                                                              .toString()),
                                                         ),
                                                         labelPadding:
                                                             const EdgeInsets
@@ -499,24 +493,25 @@ class _UserProfileSetupViewScreenState extends State<UserProfileSetupViewScreen>
                                                               context,
                                                               followerProfileRoute,
                                                               arguments: [
-                                                                Provider.of<user_data.UserProfileProvider>(
+                                                                (Provider.of<
+                                                                            user_data.UserProfileProvider>(
                                                                         context,
                                                                         listen:
                                                                             false)
                                                                     .userProfileSetups![
                                                                         index!]
-                                                                    .data()["email"],
+                                                                    .data() as Map<String, dynamic>)["email"],
                                                               ]);
                                                         }),
                                                   ),
-                                                  if (globals.verifiedUsers
-                                                      .contains(Provider.of<
-                                                                  user_data
-                                                                      .UserProfileProvider>(
-                                                              context)
-                                                          .userProfileSetups![
-                                                              index!]
-                                                          .data()["email"]
+                                                  if (globals.verifiedUsers.contains(
+                                                      (Provider.of<user_data.UserProfileProvider>(
+                                                                      context)
+                                                                  .userProfileSetups![
+                                                                      index!]
+                                                                  .data()
+                                                              as Map<String,
+                                                                  dynamic>)["email"]
                                                           .toString()))
                                                     Align(
                                                       alignment:
@@ -559,15 +554,13 @@ class _UserProfileSetupViewScreenState extends State<UserProfileSetupViewScreen>
                         flex: 16,
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
-                          child: Provider.of<user_data.UserProfileProvider>(
-                                              context)
-                                          .userProfileSetups![index!]
-                                          .data()["widget"] ==
+                          child: (Provider.of<user_data.UserProfileProvider>(context).userProfileSetups![index!].data()
+                                          as Map<String, dynamic>)["widget"] ==
                                       "" ||
-                                  Provider.of<user_data.UserProfileProvider>(
-                                              context)
-                                          .userProfileSetups![index!]
-                                          .data()["widget"] ==
+                                  (Provider.of<user_data.UserProfileProvider>(context)
+                                              .userProfileSetups![index!]
+                                              .data()
+                                          as Map<String, dynamic>)["widget"] ==
                                       null
                               ? Column(
                                   mainAxisAlignment:
@@ -577,91 +570,97 @@ class _UserProfileSetupViewScreenState extends State<UserProfileSetupViewScreen>
                                     SetupDetailsTile(
                                       isInstalled: Future.value(false),
                                       onTap: () async {
-                                        if (Provider.of<
-                                                        user_data
-                                                            .UserProfileProvider>(
-                                                    context)
-                                                .userProfileSetups![index!]
-                                                .data()["wallpaper_url"]
+                                        if ((Provider.of<user_data.UserProfileProvider>(
+                                                            context)
+                                                        .userProfileSetups![index!]
+                                                        .data()
+                                                    as Map<String,
+                                                        dynamic>)["wallpaper_url"]
                                                 .toString()[0] !=
                                             "[") {
-                                          if (Provider.of<
-                                                              user_data
-                                                                  .UserProfileProvider>(
-                                                          context)
-                                                      .userProfileSetups![
-                                                          index!]
-                                                      .data()["wall_id"] ==
+                                          if ((Provider.of<user_data.UserProfileProvider>(
+                                                                  context)
+                                                              .userProfileSetups![
+                                                                  index!]
+                                                              .data()
+                                                          as Map<String,
+                                                              dynamic>)[
+                                                      "wall_id"] ==
                                                   null ||
-                                              Provider.of<
-                                                              user_data
-                                                                  .UserProfileProvider>(
-                                                          context)
-                                                      .userProfileSetups![
-                                                          index!]
-                                                      .data()["wall_id"] ==
+                                              (Provider.of<user_data.UserProfileProvider>(
+                                                              context)
+                                                          .userProfileSetups![
+                                                              index!]
+                                                          .data()
+                                                      as Map<String,
+                                                          dynamic>)["wall_id"] ==
                                                   "") {
                                             logger.d("Id Not Found!");
-                                            launch(Provider.of<
-                                                        user_data
-                                                            .UserProfileProvider>(
-                                                    context)
-                                                .userProfileSetups![index!]
-                                                .data()["wallpaper_url"]
+                                            launch((Provider.of<
+                                                                user_data
+                                                                    .UserProfileProvider>(
+                                                            context)
+                                                        .userProfileSetups![index!]
+                                                        .data()
+                                                    as Map<String,
+                                                        dynamic>)["wallpaper_url"]
                                                 .toString());
                                           } else {
                                             Navigator.pushNamed(
                                                 context, shareRoute,
                                                 arguments: [
-                                                  Provider.of<
-                                                              user_data
-                                                                  .UserProfileProvider>(
-                                                          context)
-                                                      .userProfileSetups![
-                                                          index!]
-                                                      .data()["wall_id"]
+                                                  (Provider.of<user_data.UserProfileProvider>(
+                                                                  context)
+                                                              .userProfileSetups![
+                                                                  index!]
+                                                              .data()
+                                                          as Map<String,
+                                                              dynamic>)["wall_id"]
                                                       .toString(),
-                                                  Provider.of<
-                                                              user_data
-                                                                  .UserProfileProvider>(
-                                                          context)
-                                                      .userProfileSetups![
-                                                          index!]
-                                                      .data()[
+                                                  (Provider.of<user_data.UserProfileProvider>(
+                                                                      context)
+                                                                  .userProfileSetups![
+                                                                      index!]
+                                                                  .data()
+                                                              as Map<String,
+                                                                  dynamic>)[
                                                           "wallpaper_provider"]
                                                       .toString(),
-                                                  Provider.of<
-                                                              user_data
-                                                                  .UserProfileProvider>(
-                                                          context)
-                                                      .userProfileSetups![
-                                                          index!]
-                                                      .data()["wallpaper_url"]
+                                                  (Provider.of<user_data.UserProfileProvider>(
+                                                                      context)
+                                                                  .userProfileSetups![
+                                                                      index!]
+                                                                  .data()
+                                                              as Map<String,
+                                                                  dynamic>)[
+                                                          "wallpaper_url"]
                                                       .toString(),
-                                                  Provider.of<
-                                                              user_data
-                                                                  .UserProfileProvider>(
-                                                          context)
-                                                      .userProfileSetups![
-                                                          index!]
-                                                      .data()["wallpaper_url"]
+                                                  (Provider.of<user_data.UserProfileProvider>(
+                                                                      context)
+                                                                  .userProfileSetups![
+                                                                      index!]
+                                                                  .data()
+                                                              as Map<String,
+                                                                  dynamic>)[
+                                                          "wallpaper_url"]
                                                       .toString(),
                                                 ]);
                                           }
                                         } else {
-                                          launch(Provider.of<
-                                                      user_data
-                                                          .UserProfileProvider>(
-                                                  context)
-                                              .userProfileSetups![index!]
-                                              .data()["wallpaper_url"][1]
+                                          launch((Provider.of<
+                                                              user_data
+                                                                  .UserProfileProvider>(
+                                                          context)
+                                                      .userProfileSetups![index!]
+                                                      .data()
+                                                  as Map<String,
+                                                      dynamic>)["wallpaper_url"][1]
                                               .toString());
                                         }
                                       },
-                                      tileText: Provider.of<user_data.UserProfileProvider>(
-                                                      context)
-                                                  .userProfileSetups![index!]
-                                                  .data()["wallpaper_url"]
+                                      tileText: (Provider.of<user_data.UserProfileProvider>(context).userProfileSetups![index!].data()
+                                                          as Map<String, dynamic>)[
+                                                      "wallpaper_url"]
                                                   .toString()[0] !=
                                               "["
                                           ? (Provider.of<user_data.UserProfileProvider>(
@@ -673,88 +672,97 @@ class _UserProfileSetupViewScreenState extends State<UserProfileSetupViewScreen>
                                                   Provider.of<user_data.UserProfileProvider>(
                                                                   context,
                                                                   listen: false)
-                                                              .userProfileSetups![
-                                                          index!]["wall_id"] ==
+                                                              .userProfileSetups![index!]
+                                                          ["wall_id"] ==
                                                       "")
                                               ? "Wall Link"
                                               : "Prism (${Provider.of<user_data.UserProfileProvider>(context, listen: false).userProfileSetups![index!]["wall_id"]})"
-                                          : "${Provider.of<user_data.UserProfileProvider>(context).userProfileSetups![index!].data()["wallpaper_url"][0]} - ${(Provider.of<user_data.UserProfileProvider>(context).userProfileSetups![index!].data()["wallpaper_url"] as List).length > 2 ? Provider.of<user_data.UserProfileProvider>(context).userProfileSetups![index!].data()["wallpaper_url"][2].toString() : ""}",
+                                          : "${(Provider.of<user_data.UserProfileProvider>(context).userProfileSetups![index!].data() as Map<String, dynamic>)["wallpaper_url"][0]} - ${((Provider.of<user_data.UserProfileProvider>(context).userProfileSetups![index!].data() as Map<String, dynamic>)["wallpaper_url"] as List).length > 2 ? (Provider.of<user_data.UserProfileProvider>(context).userProfileSetups![index!].data() as Map<String, dynamic>)["wallpaper_url"][2].toString() : ""}",
                                       tileType: "Wallpaper",
                                       panelCollapsed: panelCollapsed,
                                       delay: const Duration(milliseconds: 150),
                                     ),
                                     SetupDetailsTile(
-                                      isInstalled: Provider.of<
-                                                      user_data
-                                                          .UserProfileProvider>(
-                                                  context)
-                                              .userProfileSetups![index!]
-                                              .data()["icon_url"]
+                                      isInstalled: (Provider.of<user_data.UserProfileProvider>(
+                                                          context)
+                                                      .userProfileSetups![index!]
+                                                      .data()
+                                                  as Map<String,
+                                                      dynamic>)["icon_url"]
                                               .toString()
                                               .contains(
                                                   'play.google.com/store/apps/details?id=')
-                                          ? DeviceApps.isAppInstalled(Provider.of<
-                                                      user_data
-                                                          .UserProfileProvider>(
-                                                  context)
-                                              .userProfileSetups![index!]
-                                              .data()["icon_url"]
+                                          ? DeviceApps.isAppInstalled((Provider
+                                                          .of<user_data.UserProfileProvider>(
+                                                              context)
+                                                      .userProfileSetups![index!]
+                                                      .data()
+                                                  as Map<String, dynamic>)["icon_url"]
                                               .toString()
                                               .split("details?id=")[1]
                                               .split("&")[0])
                                           : Future.value(false),
                                       onTap: () async {
-                                        if (Provider.of<
-                                                    user_data
-                                                        .UserProfileProvider>(
-                                                context)
-                                            .userProfileSetups![index!]
-                                            .data()["icon_url"]
+                                        if ((Provider.of<
+                                                            user_data
+                                                                .UserProfileProvider>(
+                                                        context)
+                                                    .userProfileSetups![index!]
+                                                    .data()
+                                                as Map<String,
+                                                    dynamic>)["icon_url"]
                                             .toString()
                                             .contains(
                                                 'play.google.com/store/apps/details?id=')) {
                                           final isInstalled = await DeviceApps
-                                              .isAppInstalled(Provider.of<
-                                                          user_data
-                                                              .UserProfileProvider>(
-                                                      context)
-                                                  .userProfileSetups![index!]
-                                                  .data()["icon_url"]
+                                              .isAppInstalled((Provider.of<
+                                                                  user_data
+                                                                      .UserProfileProvider>(
+                                                              context)
+                                                          .userProfileSetups![
+                                                              index!]
+                                                          .data()
+                                                      as Map<String,
+                                                          dynamic>)["icon_url"]
                                                   .toString()
                                                   .split("details?id=")[1]
                                                   .split("&")[0]);
                                           isInstalled
-                                              ? DeviceApps.openApp(Provider.of<
-                                                          user_data
-                                                              .UserProfileProvider>(
-                                                      context)
-                                                  .userProfileSetups![index!]
-                                                  .data()["icon_url"]
+                                              ? DeviceApps.openApp((Provider.of<
+                                                                  user_data.UserProfileProvider>(
+                                                              context)
+                                                          .userProfileSetups![
+                                                              index!]
+                                                          .data()
+                                                      as Map<String,
+                                                          dynamic>)["icon_url"]
                                                   .toString()
                                                   .split("details?id=")[1]
                                                   .split("&")[0])
-                                              : launch(Provider.of<
+                                              : launch((Provider.of<user_data.UserProfileProvider>(
+                                                          context)
+                                                      .userProfileSetups![index!]
+                                                      .data() as Map<String, dynamic>)["icon_url"]
+                                                  .toString());
+                                        } else {
+                                          launch((Provider.of<
+                                                              user_data
+                                                                  .UserProfileProvider>(
+                                                          context)
+                                                      .userProfileSetups![index!]
+                                                      .data()
+                                                  as Map<String,
+                                                      dynamic>)["icon_url"]
+                                              .toString());
+                                        }
+                                      },
+                                      tileText: (Provider.of<
                                                           user_data
                                                               .UserProfileProvider>(
                                                       context)
                                                   .userProfileSetups![index!]
-                                                  .data()["icon_url"]
-                                                  .toString());
-                                        } else {
-                                          launch(Provider.of<
-                                                      user_data
-                                                          .UserProfileProvider>(
-                                                  context)
-                                              .userProfileSetups![index!]
-                                              .data()["icon_url"]
-                                              .toString());
-                                        }
-                                      },
-                                      tileText: Provider.of<
-                                              user_data
-                                                  .UserProfileProvider>(context)
-                                          .userProfileSetups![index!]
-                                          .data()["icon"]
+                                                  .data()
+                                              as Map<String, dynamic>)["icon"]
                                           .toString(),
                                       tileType: "Icons",
                                       panelCollapsed: panelCollapsed,
@@ -762,17 +770,14 @@ class _UserProfileSetupViewScreenState extends State<UserProfileSetupViewScreen>
                                     ),
                                   ],
                                 )
-                              : Provider.of<user_data.UserProfileProvider>(
-                                                  context)
-                                              .userProfileSetups![index!]
-                                              .data()["widget2"] ==
+                              : (Provider.of<user_data.UserProfileProvider>(context)
+                                                  .userProfileSetups![index!]
+                                                  .data() as Map<String, dynamic>)[
+                                              "widget2"] ==
                                           "" ||
-                                      Provider.of<
-                                                      user_data
-                                                          .UserProfileProvider>(
-                                                  context)
+                                      (Provider.of<user_data.UserProfileProvider>(context)
                                               .userProfileSetups![index!]
-                                              .data()["widget2"] ==
+                                              .data() as Map<String, dynamic>)["widget2"] ==
                                           null
                                   ? Column(
                                       mainAxisAlignment:
@@ -782,104 +787,110 @@ class _UserProfileSetupViewScreenState extends State<UserProfileSetupViewScreen>
                                         SetupDetailsTile(
                                           isInstalled: Future.value(false),
                                           onTap: () async {
-                                            if (Provider.of<
-                                                            user_data
-                                                                .UserProfileProvider>(
-                                                        context,
-                                                        listen: false)
-                                                    .userProfileSetups![index!]
-                                                    .data()["wallpaper_url"]
+                                            if ((Provider.of<user_data.UserProfileProvider>(
+                                                                context,
+                                                                listen: false)
+                                                            .userProfileSetups![
+                                                                index!]
+                                                            .data()
+                                                        as Map<String,
+                                                            dynamic>)["wallpaper_url"]
                                                     .toString()[0] !=
                                                 "[") {
-                                              if (Provider.of<
-                                                                  user_data
-                                                                      .UserProfileProvider>(
-                                                              context,
-                                                              listen: false)
-                                                          .userProfileSetups![
-                                                              index!]
-                                                          .data()["wall_id"] ==
+                                              if ((Provider.of<user_data.UserProfileProvider>(
+                                                                      context,
+                                                                      listen: false)
+                                                                  .userProfileSetups![
+                                                                      index!]
+                                                                  .data()
+                                                              as Map<String,
+                                                                  dynamic>)[
+                                                          "wall_id"] ==
                                                       null ||
-                                                  Provider.of<
-                                                                  user_data
-                                                                      .UserProfileProvider>(
-                                                              context,
-                                                              listen: false)
-                                                          .userProfileSetups![
-                                                              index!]
-                                                          .data()["wall_id"] ==
+                                                  (Provider.of<user_data.UserProfileProvider>(
+                                                                  context,
+                                                                  listen: false)
+                                                              .userProfileSetups![
+                                                                  index!]
+                                                              .data()
+                                                          as Map<String,
+                                                              dynamic>)["wall_id"] ==
                                                       "") {
                                                 logger.d("Id Not Found!");
-                                                launch(Provider.of<
-                                                            user_data
-                                                                .UserProfileProvider>(
-                                                        context,
-                                                        listen: false)
-                                                    .userProfileSetups![index!]
-                                                    .data()["wallpaper_url"]
+                                                launch((Provider.of<
+                                                                    user_data
+                                                                        .UserProfileProvider>(
+                                                                context,
+                                                                listen: false)
+                                                            .userProfileSetups![
+                                                                index!]
+                                                            .data()
+                                                        as Map<String,
+                                                            dynamic>)["wallpaper_url"]
                                                     .toString());
                                               } else {
                                                 Navigator.pushNamed(
                                                     context, shareRoute,
                                                     arguments: [
-                                                      Provider.of<
-                                                                  user_data
-                                                                      .UserProfileProvider>(
-                                                              context,
-                                                              listen: false)
-                                                          .userProfileSetups![
-                                                              index!]
-                                                          .data()["wall_id"]
+                                                      (Provider.of<user_data.UserProfileProvider>(
+                                                                      context,
+                                                                      listen: false)
+                                                                  .userProfileSetups![
+                                                                      index!]
+                                                                  .data()
+                                                              as Map<String,
+                                                                  dynamic>)["wall_id"]
                                                           .toString(),
-                                                      Provider.of<
-                                                                  user_data
-                                                                      .UserProfileProvider>(
-                                                              context,
-                                                              listen: false)
-                                                          .userProfileSetups![
-                                                              index!]
-                                                          .data()[
+                                                      (Provider.of<user_data.UserProfileProvider>(
+                                                                          context,
+                                                                          listen: false)
+                                                                      .userProfileSetups![
+                                                                          index!]
+                                                                      .data()
+                                                                  as Map<String,
+                                                                      dynamic>)[
                                                               "wallpaper_provider"]
                                                           .toString(),
-                                                      Provider.of<
-                                                                  user_data
-                                                                      .UserProfileProvider>(
-                                                              context,
-                                                              listen: false)
-                                                          .userProfileSetups![
-                                                              index!]
-                                                          .data()[
+                                                      (Provider.of<user_data.UserProfileProvider>(
+                                                                          context,
+                                                                          listen: false)
+                                                                      .userProfileSetups![
+                                                                          index!]
+                                                                      .data()
+                                                                  as Map<String,
+                                                                      dynamic>)[
                                                               "wallpaper_url"]
                                                           .toString(),
-                                                      Provider.of<
-                                                                  user_data
-                                                                      .UserProfileProvider>(
-                                                              context,
-                                                              listen: false)
-                                                          .userProfileSetups![
-                                                              index!]
-                                                          .data()[
+                                                      (Provider.of<user_data.UserProfileProvider>(
+                                                                          context,
+                                                                          listen: false)
+                                                                      .userProfileSetups![
+                                                                          index!]
+                                                                      .data()
+                                                                  as Map<String,
+                                                                      dynamic>)[
                                                               "wallpaper_url"]
                                                           .toString(),
                                                     ]);
                                               }
                                             } else {
-                                              launch(Provider.of<
-                                                          user_data
-                                                              .UserProfileProvider>(
-                                                      context,
-                                                      listen: false)
-                                                  .userProfileSetups![index!]
-                                                  .data()["wallpaper_url"][1]
+                                              launch((Provider.of<
+                                                                      user_data
+                                                                          .UserProfileProvider>(
+                                                                  context,
+                                                                  listen: false)
+                                                              .userProfileSetups![
+                                                                  index!]
+                                                              .data()
+                                                          as Map<String,
+                                                              dynamic>)[
+                                                      "wallpaper_url"][1]
                                                   .toString());
                                             }
                                           },
-                                          tileText: Provider.of<user_data.UserProfileProvider>(
-                                                          context,
-                                                          listen: false)
-                                                      .userProfileSetups![
-                                                          index!]
-                                                      .data()["wallpaper_url"]
+                                          tileText: (Provider.of<user_data.UserProfileProvider>(context, listen: false).userProfileSetups![index!].data()
+                                                              as Map<String, dynamic>)[
+                                                          "wallpaper_url"]
                                                       .toString()[0] !=
                                                   "["
                                               ? (Provider.of<user_data.UserProfileProvider>(
@@ -889,103 +900,106 @@ class _UserProfileSetupViewScreenState extends State<UserProfileSetupViewScreen>
                                                               ["wall_id"] ==
                                                           null ||
                                                       Provider.of<user_data.UserProfileProvider>(
-                                                                      context,
-                                                                      listen: false)
-                                                                  .userProfileSetups![index!]
-                                                              ["wall_id"] ==
+                                                                  context,
+                                                                  listen: false)
+                                                              .userProfileSetups![index!]["wall_id"] ==
                                                           "")
                                                   ? "Wall Link"
                                                   : "Prism (${Provider.of<user_data.UserProfileProvider>(context, listen: false).userProfileSetups![index!]["wall_id"]})"
-                                              : "${Provider.of<user_data.UserProfileProvider>(context).userProfileSetups![index!].data()["wallpaper_url"][0]} - ${(Provider.of<user_data.UserProfileProvider>(context).userProfileSetups![index!].data()["wallpaper_url"] as List).length > 2 ? Provider.of<user_data.UserProfileProvider>(context).userProfileSetups![index!].data()["wallpaper_url"][2].toString() : ""}",
+                                              : "${(Provider.of<user_data.UserProfileProvider>(context).userProfileSetups![index!].data() as Map<String, dynamic>)["wallpaper_url"][0]} - ${((Provider.of<user_data.UserProfileProvider>(context).userProfileSetups![index!].data() as Map<String, dynamic>)["wallpaper_url"] as List).length > 2 ? (Provider.of<user_data.UserProfileProvider>(context).userProfileSetups![index!].data() as Map<String, dynamic>)["wallpaper_url"][2].toString() : ""}",
                                           tileType: "Wallpaper",
                                           panelCollapsed: panelCollapsed,
                                           delay:
                                               const Duration(milliseconds: 150),
                                         ),
                                         SetupDetailsTile(
-                                          isInstalled: Provider.of<
-                                                          user_data
-                                                              .UserProfileProvider>(
-                                                      context)
-                                                  .userProfileSetups![index!]
-                                                  .data()["icon_url"]
+                                          isInstalled: (Provider.of<user_data.UserProfileProvider>(context)
+                                                          .userProfileSetups![
+                                                              index!]
+                                                          .data()
+                                                      as Map<String,
+                                                          dynamic>)["icon_url"]
                                                   .toString()
                                                   .contains(
                                                       'play.google.com/store/apps/details?id=')
                                               ? DeviceApps.isAppInstalled(
-                                                  Provider.of<
-                                                              user_data
-                                                                  .UserProfileProvider>(
-                                                          context)
-                                                      .userProfileSetups![
-                                                          index!]
-                                                      .data()["icon_url"]
+                                                  (Provider.of<user_data.UserProfileProvider>(
+                                                                  context)
+                                                              .userProfileSetups![
+                                                                  index!]
+                                                              .data()
+                                                          as Map<String, dynamic>)["icon_url"]
                                                       .toString()
                                                       .split("details?id=")[1]
                                                       .split("&")[0])
                                               : Future.value(false),
                                           onTap: () async {
-                                            if (Provider.of<
-                                                        user_data
-                                                            .UserProfileProvider>(
-                                                    context,
-                                                    listen: false)
-                                                .userProfileSetups![index!]
-                                                .data()["icon_url"]
+                                            if ((Provider.of<
+                                                                user_data
+                                                                    .UserProfileProvider>(
+                                                            context,
+                                                            listen: false)
+                                                        .userProfileSetups![index!]
+                                                        .data()
+                                                    as Map<String,
+                                                        dynamic>)["icon_url"]
                                                 .toString()
                                                 .contains(
                                                     'play.google.com/store/apps/details?id=')) {
                                               final isInstalled = await DeviceApps
-                                                  .isAppInstalled(Provider.of<
-                                                              user_data
-                                                                  .UserProfileProvider>(
-                                                          context,
-                                                          listen: false)
-                                                      .userProfileSetups![
-                                                          index!]
-                                                      .data()["icon_url"]
+                                                  .isAppInstalled((Provider.of<
+                                                                      user_data
+                                                                          .UserProfileProvider>(
+                                                                  context,
+                                                                  listen: false)
+                                                              .userProfileSetups![
+                                                                  index!]
+                                                              .data()
+                                                          as Map<String,
+                                                              dynamic>)["icon_url"]
                                                       .toString()
                                                       .split("details?id=")[1]
                                                       .split("&")[0]);
                                               isInstalled
-                                                  ? DeviceApps.openApp(Provider.of<
-                                                              user_data
-                                                                  .UserProfileProvider>(
-                                                          context,
-                                                          listen: false)
-                                                      .userProfileSetups![
-                                                          index!]
-                                                      .data()["icon_url"]
+                                                  ? DeviceApps.openApp((Provider.of<user_data.UserProfileProvider>(
+                                                                  context,
+                                                                  listen: false)
+                                                              .userProfileSetups![
+                                                                  index!]
+                                                              .data() as Map<String, dynamic>)[
+                                                          "icon_url"]
                                                       .toString()
                                                       .split("details?id=")[1]
                                                       .split("&")[0])
-                                                  : launch(Provider.of<
+                                                  : launch((Provider.of<user_data.UserProfileProvider>(
+                                                              context,
+                                                              listen: false)
+                                                          .userProfileSetups![index!]
+                                                          .data() as Map<String, dynamic>)["icon_url"]
+                                                      .toString());
+                                            } else {
+                                              launch((Provider.of<
+                                                                  user_data
+                                                                      .UserProfileProvider>(
+                                                              context,
+                                                              listen: false)
+                                                          .userProfileSetups![
+                                                              index!]
+                                                          .data()
+                                                      as Map<String,
+                                                          dynamic>)["icon_url"]
+                                                  .toString());
+                                            }
+                                          },
+                                          tileText: (Provider.of<
                                                               user_data
                                                                   .UserProfileProvider>(
                                                           context,
                                                           listen: false)
-                                                      .userProfileSetups![
-                                                          index!]
-                                                      .data()["icon_url"]
-                                                      .toString());
-                                            } else {
-                                              launch(Provider.of<
-                                                          user_data
-                                                              .UserProfileProvider>(
-                                                      context,
-                                                      listen: false)
-                                                  .userProfileSetups![index!]
-                                                  .data()["icon_url"]
-                                                  .toString());
-                                            }
-                                          },
-                                          tileText: Provider.of<
-                                                      user_data
-                                                          .UserProfileProvider>(
-                                                  context,
-                                                  listen: false)
-                                              .userProfileSetups![index!]
-                                              .data()["icon"]
+                                                      .userProfileSetups![index!]
+                                                      .data()
+                                                  as Map<String,
+                                                      dynamic>)["icon"]
                                               .toString(),
                                           tileType: "Icons",
                                           panelCollapsed: panelCollapsed,
@@ -993,89 +1007,92 @@ class _UserProfileSetupViewScreenState extends State<UserProfileSetupViewScreen>
                                               const Duration(milliseconds: 200),
                                         ),
                                         SetupDetailsTile(
-                                          isInstalled: Provider.of<
-                                                          user_data
-                                                              .UserProfileProvider>(
-                                                      context,
-                                                      listen: false)
-                                                  .userProfileSetups![index!]
-                                                  .data()["widget_url"]
+                                          isInstalled: (Provider.of<user_data.UserProfileProvider>(
+                                                                  context,
+                                                                  listen: false)
+                                                              .userProfileSetups![
+                                                                  index!]
+                                                              .data()
+                                                          as Map<String, dynamic>)[
+                                                      "widget_url"]
                                                   .toString()
                                                   .contains(
                                                       'play.google.com/store/apps/details?id=')
                                               ? DeviceApps.isAppInstalled(
-                                                  Provider.of<
-                                                              user_data
-                                                                  .UserProfileProvider>(
-                                                          context)
-                                                      .userProfileSetups![
-                                                          index!]
-                                                      .data()["widget_url"]
+                                                  (Provider.of<user_data.UserProfileProvider>(
+                                                              context)
+                                                          .userProfileSetups![index!]
+                                                          .data() as Map<String, dynamic>)["widget_url"]
                                                       .toString()
                                                       .split("details?id=")[1]
                                                       .split("&")[0])
                                               : Future.value(false),
                                           onTap: () async {
-                                            if (Provider.of<
-                                                        user_data
-                                                            .UserProfileProvider>(
-                                                    context,
-                                                    listen: false)
-                                                .userProfileSetups![index!]
-                                                .data()["widget_url"]
+                                            if ((Provider.of<
+                                                                user_data
+                                                                    .UserProfileProvider>(
+                                                            context,
+                                                            listen: false)
+                                                        .userProfileSetups![index!]
+                                                        .data()
+                                                    as Map<String,
+                                                        dynamic>)["widget_url"]
                                                 .toString()
                                                 .contains(
                                                     'play.google.com/store/apps/details?id=')) {
                                               final isInstalled = await DeviceApps
-                                                  .isAppInstalled(Provider.of<
-                                                              user_data
-                                                                  .UserProfileProvider>(
-                                                          context,
-                                                          listen: false)
-                                                      .userProfileSetups![
-                                                          index!]
-                                                      .data()["widget_url"]
+                                                  .isAppInstalled((Provider.of<
+                                                                      user_data
+                                                                          .UserProfileProvider>(
+                                                                  context,
+                                                                  listen: false)
+                                                              .userProfileSetups![
+                                                                  index!]
+                                                              .data()
+                                                          as Map<String,
+                                                              dynamic>)["widget_url"]
                                                       .toString()
                                                       .split("details?id=")[1]
                                                       .split("&")[0]);
                                               isInstalled
-                                                  ? DeviceApps.openApp(Provider.of<
-                                                              user_data
-                                                                  .UserProfileProvider>(
-                                                          context,
-                                                          listen: false)
-                                                      .userProfileSetups![
-                                                          index!]
-                                                      .data()["widget_url"]
+                                                  ? DeviceApps.openApp((Provider.of<user_data.UserProfileProvider>(
+                                                                  context,
+                                                                  listen: false)
+                                                              .userProfileSetups![
+                                                                  index!]
+                                                              .data() as Map<String, dynamic>)[
+                                                          "widget_url"]
                                                       .toString()
                                                       .split("details?id=")[1]
                                                       .split("&")[0])
-                                                  : launch(Provider.of<
-                                                              user_data
-                                                                  .UserProfileProvider>(
-                                                          context,
-                                                          listen: false)
-                                                      .userProfileSetups![
-                                                          index!]
-                                                      .data()["widget_url"]
+                                                  : launch((Provider.of<user_data.UserProfileProvider>(
+                                                              context,
+                                                              listen: false)
+                                                          .userProfileSetups![index!]
+                                                          .data() as Map<String, dynamic>)["widget_url"]
                                                       .toString());
                                             } else {
-                                              launch(Provider.of<
-                                                          user_data
-                                                              .UserProfileProvider>(
-                                                      context,
-                                                      listen: false)
-                                                  .userProfileSetups![index!]
-                                                  .data()["widget_url"]
+                                              launch((Provider.of<
+                                                                  user_data
+                                                                      .UserProfileProvider>(
+                                                              context,
+                                                              listen: false)
+                                                          .userProfileSetups![
+                                                              index!]
+                                                          .data()
+                                                      as Map<String,
+                                                          dynamic>)["widget_url"]
                                                   .toString());
                                             }
                                           },
-                                          tileText: Provider.of<
-                                                      user_data
-                                                          .UserProfileProvider>(
-                                                  context)
-                                              .userProfileSetups![index!]
-                                              .data()["widget"]
+                                          tileText: (Provider.of<
+                                                              user_data
+                                                                  .UserProfileProvider>(
+                                                          context)
+                                                      .userProfileSetups![index!]
+                                                      .data()
+                                                  as Map<String,
+                                                      dynamic>)["widget"]
                                               .toString(),
                                           tileType: "Widget",
                                           panelCollapsed: panelCollapsed,
@@ -1092,390 +1109,407 @@ class _UserProfileSetupViewScreenState extends State<UserProfileSetupViewScreen>
                                           SetupDetailsTile(
                                             isInstalled: Future.value(false),
                                             onTap: () async {
-                                              if (Provider.of<
-                                                              user_data
-                                                                  .UserProfileProvider>(
-                                                          context,
-                                                          listen: false)
-                                                      .userProfileSetups![
-                                                          index!]
-                                                      .data()["wallpaper_url"]
+                                              if ((Provider.of<user_data.UserProfileProvider>(
+                                                                  context,
+                                                                  listen: false)
+                                                              .userProfileSetups![
+                                                                  index!]
+                                                              .data()
+                                                          as Map<String,
+                                                              dynamic>)["wallpaper_url"]
                                                       .toString()[0] !=
                                                   "[") {
-                                                if (Provider.of<user_data.UserProfileProvider>(
+                                                if ((Provider.of<user_data.UserProfileProvider>(
+                                                                        context,
+                                                                        listen: false)
+                                                                    .userProfileSetups![
+                                                                        index!]
+                                                                    .data()
+                                                                as Map<String,
+                                                                    dynamic>)[
+                                                            "wall_id"] ==
+                                                        null ||
+                                                    (Provider.of<user_data.UserProfileProvider>(
                                                                     context,
                                                                     listen: false)
                                                                 .userProfileSetups![
                                                                     index!]
-                                                                .data()[
-                                                            "wall_id"] ==
-                                                        null ||
-                                                    Provider.of<
-                                                                    user_data
-                                                                        .UserProfileProvider>(
-                                                                context,
-                                                                listen: false)
-                                                            .userProfileSetups![
-                                                                index!]
-                                                            .data()["wall_id"] ==
+                                                                .data()
+                                                            as Map<String,
+                                                                dynamic>)["wall_id"] ==
                                                         "") {
                                                   logger.d("Id Not Found!");
-                                                  launch(Provider.of<
-                                                              user_data
-                                                                  .UserProfileProvider>(
-                                                          context,
-                                                          listen: false)
-                                                      .userProfileSetups![
-                                                          index!]
-                                                      .data()["wallpaper_url"]
+                                                  launch((Provider.of<
+                                                                      user_data
+                                                                          .UserProfileProvider>(
+                                                                  context,
+                                                                  listen: false)
+                                                              .userProfileSetups![
+                                                                  index!]
+                                                              .data()
+                                                          as Map<String,
+                                                              dynamic>)["wallpaper_url"]
                                                       .toString());
                                                 } else {
                                                   Navigator.pushNamed(
-                                                      context, shareRoute,
+                                                      context,
+                                                      shareRoute,
                                                       arguments: [
-                                                        Provider.of<
-                                                                    user_data
-                                                                        .UserProfileProvider>(
-                                                                context,
-                                                                listen: false)
-                                                            .userProfileSetups![
-                                                                index!]
-                                                            .data()["wall_id"]
+                                                        (Provider.of<user_data.UserProfileProvider>(
+                                                                        context,
+                                                                        listen:
+                                                                            false)
+                                                                    .userProfileSetups![
+                                                                        index!]
+                                                                    .data()
+                                                                as Map<String,
+                                                                    dynamic>)["wall_id"]
                                                             .toString(),
-                                                        Provider.of<
-                                                                    user_data
-                                                                        .UserProfileProvider>(
-                                                                context,
-                                                                listen: false)
-                                                            .userProfileSetups![
-                                                                index!]
-                                                            .data()[
-                                                                "wallpaper_provider"]
+                                                        (Provider.of<user_data.UserProfileProvider>(
+                                                                        context,
+                                                                        listen:
+                                                                            false)
+                                                                    .userProfileSetups![
+                                                                        index!]
+                                                                    .data()
+                                                                as Map<String,
+                                                                    dynamic>)["wallpaper_provider"]
                                                             .toString(),
-                                                        Provider.of<
-                                                                    user_data
-                                                                        .UserProfileProvider>(
-                                                                context,
-                                                                listen: false)
-                                                            .userProfileSetups![
-                                                                index!]
-                                                            .data()[
-                                                                "wallpaper_url"]
+                                                        (Provider.of<user_data.UserProfileProvider>(
+                                                                        context,
+                                                                        listen:
+                                                                            false)
+                                                                    .userProfileSetups![
+                                                                        index!]
+                                                                    .data()
+                                                                as Map<String,
+                                                                    dynamic>)["wallpaper_url"]
                                                             .toString(),
-                                                        Provider.of<
-                                                                    user_data
-                                                                        .UserProfileProvider>(
-                                                                context,
-                                                                listen: false)
-                                                            .userProfileSetups![
-                                                                index!]
-                                                            .data()[
-                                                                "wallpaper_url"]
+                                                        (Provider.of<user_data.UserProfileProvider>(
+                                                                        context,
+                                                                        listen:
+                                                                            false)
+                                                                    .userProfileSetups![
+                                                                        index!]
+                                                                    .data()
+                                                                as Map<String,
+                                                                    dynamic>)["wallpaper_url"]
                                                             .toString(),
                                                       ]);
                                                 }
                                               } else {
-                                                launch(Provider.of<
-                                                            user_data
-                                                                .UserProfileProvider>(
-                                                        context)
-                                                    .userProfileSetups![index!]
-                                                    .data()["wallpaper_url"][1]
+                                                launch((Provider.of<user_data.UserProfileProvider>(
+                                                                    context)
+                                                                .userProfileSetups![
+                                                                    index!]
+                                                                .data()
+                                                            as Map<String,
+                                                                dynamic>)[
+                                                        "wallpaper_url"][1]
                                                     .toString());
                                               }
                                             },
-                                            tileText: Provider.of<user_data.UserProfileProvider>(context)
-                                                        .userProfileSetups![
-                                                            index!]
-                                                        .data()["wallpaper_url"]
+                                            tileText: (Provider.of<user_data.UserProfileProvider>(context)
+                                                                    .userProfileSetups![
+                                                                        index!]
+                                                                    .data()
+                                                                as Map<String, dynamic>)[
+                                                            "wallpaper_url"]
                                                         .toString()[0] !=
                                                     "["
-                                                ? (Provider.of<user_data.UserProfileProvider>(
-                                                                        context,
-                                                                        listen:
-                                                                            false)
+                                                ? (Provider.of<user_data.UserProfileProvider>(context, listen: false)
                                                                     .userProfileSetups![index!]
                                                                 ["wall_id"] ==
                                                             null ||
-                                                        Provider.of<user_data.UserProfileProvider>(
-                                                                        context,
-                                                                        listen:
-                                                                            false)
+                                                        Provider.of<user_data.UserProfileProvider>(context, listen: false)
                                                                     .userProfileSetups![index!]
                                                                 ["wall_id"] ==
                                                             "")
                                                     ? "Wall Link"
                                                     : "Prism (${Provider.of<user_data.UserProfileProvider>(context, listen: false).userProfileSetups![index!]["wall_id"]})"
-                                                : "${Provider.of<user_data.UserProfileProvider>(context).userProfileSetups![index!].data()["wallpaper_url"][0]} - ${(Provider.of<user_data.UserProfileProvider>(context).userProfileSetups![index!].data()["wallpaper_url"] as List).length > 2 ? Provider.of<user_data.UserProfileProvider>(context).userProfileSetups![index!].data()["wallpaper_url"][2].toString() : ""}",
+                                                : "${(Provider.of<user_data.UserProfileProvider>(context).userProfileSetups![index!].data() as Map<String, dynamic>)["wallpaper_url"][0]} - ${((Provider.of<user_data.UserProfileProvider>(context).userProfileSetups![index!].data() as Map<String, dynamic>)["wallpaper_url"] as List).length > 2 ? (Provider.of<user_data.UserProfileProvider>(context).userProfileSetups![index!].data() as Map<String, dynamic>)["wallpaper_url"][2].toString() : ""}",
                                             tileType: "Wallpaper",
                                             panelCollapsed: panelCollapsed,
                                             delay: const Duration(
                                                 milliseconds: 150),
                                           ),
                                           SetupDetailsTile(
-                                            isInstalled: Provider.of<
-                                                            user_data
-                                                                .UserProfileProvider>(
-                                                        context)
-                                                    .userProfileSetups![index!]
-                                                    .data()["icon_url"]
+                                            isInstalled: (Provider.of<user_data.UserProfileProvider>(context)
+                                                                .userProfileSetups![
+                                                                    index!]
+                                                                .data()
+                                                            as Map<String, dynamic>)[
+                                                        "icon_url"]
                                                     .toString()
                                                     .contains(
                                                         'play.google.com/store/apps/details?id=')
                                                 ? DeviceApps.isAppInstalled(
-                                                    Provider.of<
-                                                                user_data
-                                                                    .UserProfileProvider>(
-                                                            context)
-                                                        .userProfileSetups![
-                                                            index!]
-                                                        .data()["icon_url"]
+                                                    (Provider.of<user_data.UserProfileProvider>(
+                                                                    context)
+                                                                .userProfileSetups![
+                                                                    index!]
+                                                                .data()
+                                                            as Map<String, dynamic>)["icon_url"]
                                                         .toString()
                                                         .split("details?id=")[1]
                                                         .split("&")[0])
                                                 : Future.value(false),
                                             onTap: () async {
-                                              if (Provider.of<
-                                                          user_data
-                                                              .UserProfileProvider>(
-                                                      context,
-                                                      listen: false)
-                                                  .userProfileSetups![index!]
-                                                  .data()["icon_url"]
+                                              if ((Provider.of<
+                                                                  user_data
+                                                                      .UserProfileProvider>(
+                                                              context,
+                                                              listen: false)
+                                                          .userProfileSetups![
+                                                              index!]
+                                                          .data()
+                                                      as Map<String,
+                                                          dynamic>)["icon_url"]
                                                   .toString()
                                                   .contains(
                                                       'play.google.com/store/apps/details?id=')) {
                                                 final isInstalled = await DeviceApps
-                                                    .isAppInstalled(Provider.of<
-                                                                user_data
-                                                                    .UserProfileProvider>(
-                                                            context,
-                                                            listen: false)
-                                                        .userProfileSetups![
-                                                            index!]
-                                                        .data()["icon_url"]
+                                                    .isAppInstalled((Provider.of<
+                                                                        user_data
+                                                                            .UserProfileProvider>(
+                                                                    context,
+                                                                    listen: false)
+                                                                .userProfileSetups![
+                                                                    index!]
+                                                                .data()
+                                                            as Map<String,
+                                                                dynamic>)["icon_url"]
                                                         .toString()
                                                         .split("details?id=")[1]
                                                         .split("&")[0]);
                                                 isInstalled
-                                                    ? DeviceApps.openApp(Provider.of<
-                                                                user_data
-                                                                    .UserProfileProvider>(
-                                                            context,
-                                                            listen: false)
-                                                        .userProfileSetups![
-                                                            index!]
-                                                        .data()["icon_url"]
+                                                    ? DeviceApps.openApp((Provider.of<user_data.UserProfileProvider>(
+                                                                    context,
+                                                                    listen: false)
+                                                                .userProfileSetups![
+                                                                    index!]
+                                                                .data() as Map<String, dynamic>)[
+                                                            "icon_url"]
                                                         .toString()
                                                         .split("details?id=")[1]
                                                         .split("&")[0])
-                                                    : launch(Provider.of<
-                                                                user_data
-                                                                    .UserProfileProvider>(
-                                                            context,
-                                                            listen: false)
-                                                        .userProfileSetups![
-                                                            index!]
-                                                        .data()["icon_url"]
+                                                    : launch((Provider.of<user_data.UserProfileProvider>(
+                                                                context,
+                                                                listen: false)
+                                                            .userProfileSetups![index!]
+                                                            .data() as Map<String, dynamic>)["icon_url"]
                                                         .toString());
                                               } else {
-                                                launch(Provider.of<
-                                                            user_data
-                                                                .UserProfileProvider>(
-                                                        context,
-                                                        listen: false)
-                                                    .userProfileSetups![index!]
-                                                    .data()["icon_url"]
+                                                launch((Provider.of<
+                                                                    user_data
+                                                                        .UserProfileProvider>(
+                                                                context,
+                                                                listen: false)
+                                                            .userProfileSetups![
+                                                                index!]
+                                                            .data()
+                                                        as Map<String,
+                                                            dynamic>)["icon_url"]
                                                     .toString());
                                               }
                                             },
-                                            tileText: Provider.of<
-                                                        user_data
-                                                            .UserProfileProvider>(
-                                                    context)
-                                                .userProfileSetups![index!]
-                                                .data()["icon"]
-                                                .toString(),
+                                            tileText:
+                                                (Provider.of<user_data.UserProfileProvider>(
+                                                                context)
+                                                            .userProfileSetups![
+                                                                index!]
+                                                            .data()
+                                                        as Map<String,
+                                                            dynamic>)["icon"]
+                                                    .toString(),
                                             tileType: "Icons",
                                             panelCollapsed: panelCollapsed,
                                             delay: const Duration(
                                                 milliseconds: 200),
                                           ),
                                           SetupDetailsTile(
-                                            isInstalled: Provider.of<
-                                                            user_data
-                                                                .UserProfileProvider>(
-                                                        context)
-                                                    .userProfileSetups![index!]
-                                                    .data()["widget_url"]
+                                            isInstalled: (Provider.of<user_data.UserProfileProvider>(context)
+                                                                .userProfileSetups![
+                                                                    index!]
+                                                                .data()
+                                                            as Map<String, dynamic>)[
+                                                        "widget_url"]
                                                     .toString()
                                                     .contains(
                                                         'play.google.com/store/apps/details?id=')
                                                 ? DeviceApps.isAppInstalled(
-                                                    Provider.of<
-                                                                user_data
-                                                                    .UserProfileProvider>(
-                                                            context)
-                                                        .userProfileSetups![
-                                                            index!]
-                                                        .data()["widget_url"]
+                                                    (Provider.of<user_data.UserProfileProvider>(
+                                                                    context)
+                                                                .userProfileSetups![
+                                                                    index!]
+                                                                .data()
+                                                            as Map<String, dynamic>)["widget_url"]
                                                         .toString()
                                                         .split("details?id=")[1]
                                                         .split("&")[0])
                                                 : Future.value(false),
                                             onTap: () async {
-                                              if (Provider.of<
-                                                          user_data
-                                                              .UserProfileProvider>(
-                                                      context,
-                                                      listen: false)
-                                                  .userProfileSetups![index!]
-                                                  .data()["widget_url"]
+                                              if ((Provider.of<user_data.UserProfileProvider>(
+                                                                  context,
+                                                                  listen: false)
+                                                              .userProfileSetups![
+                                                                  index!]
+                                                              .data()
+                                                          as Map<String,
+                                                              dynamic>)[
+                                                      "widget_url"]
                                                   .toString()
                                                   .contains(
                                                       'play.google.com/store/apps/details?id=')) {
                                                 final isInstalled = await DeviceApps
-                                                    .isAppInstalled(Provider.of<
-                                                                user_data
-                                                                    .UserProfileProvider>(
-                                                            context,
-                                                            listen: false)
-                                                        .userProfileSetups![
-                                                            index!]
-                                                        .data()["widget_url"]
+                                                    .isAppInstalled((Provider.of<
+                                                                        user_data
+                                                                            .UserProfileProvider>(
+                                                                    context,
+                                                                    listen: false)
+                                                                .userProfileSetups![
+                                                                    index!]
+                                                                .data()
+                                                            as Map<String,
+                                                                dynamic>)["widget_url"]
                                                         .toString()
                                                         .split("details?id=")[1]
                                                         .split("&")[0]);
                                                 isInstalled
-                                                    ? DeviceApps.openApp(Provider.of<
-                                                                user_data
-                                                                    .UserProfileProvider>(
-                                                            context,
-                                                            listen: false)
-                                                        .userProfileSetups![
-                                                            index!]
-                                                        .data()["widget_url"]
+                                                    ? DeviceApps.openApp((Provider.of<user_data.UserProfileProvider>(
+                                                                    context,
+                                                                    listen: false)
+                                                                .userProfileSetups![
+                                                                    index!]
+                                                                .data() as Map<String, dynamic>)[
+                                                            "widget_url"]
                                                         .toString()
                                                         .split("details?id=")[1]
                                                         .split("&")[0])
-                                                    : launch(Provider.of<
-                                                                user_data
-                                                                    .UserProfileProvider>(
-                                                            context,
-                                                            listen: false)
-                                                        .userProfileSetups![
-                                                            index!]
-                                                        .data()["widget_url"]
+                                                    : launch((Provider.of<user_data.UserProfileProvider>(
+                                                                context,
+                                                                listen: false)
+                                                            .userProfileSetups![index!]
+                                                            .data() as Map<String, dynamic>)["widget_url"]
                                                         .toString());
                                               } else {
-                                                launch(Provider.of<
-                                                            user_data
-                                                                .UserProfileProvider>(
-                                                        context,
-                                                        listen: false)
-                                                    .userProfileSetups![index!]
-                                                    .data()["widget_url"]
+                                                launch((Provider.of<
+                                                                    user_data
+                                                                        .UserProfileProvider>(
+                                                                context,
+                                                                listen: false)
+                                                            .userProfileSetups![
+                                                                index!]
+                                                            .data()
+                                                        as Map<String,
+                                                            dynamic>)["widget_url"]
                                                     .toString());
                                               }
                                             },
-                                            tileText: Provider.of<
-                                                        user_data
-                                                            .UserProfileProvider>(
-                                                    context,
-                                                    listen: false)
-                                                .userProfileSetups![index!]
-                                                .data()["widget"]
-                                                .toString(),
+                                            tileText:
+                                                (Provider.of<user_data.UserProfileProvider>(
+                                                                context,
+                                                                listen: false)
+                                                            .userProfileSetups![
+                                                                index!]
+                                                            .data()
+                                                        as Map<String,
+                                                            dynamic>)["widget"]
+                                                    .toString(),
                                             tileType: "Widget",
                                             panelCollapsed: panelCollapsed,
                                             delay: const Duration(
                                                 milliseconds: 250),
                                           ),
                                           SetupDetailsTile(
-                                            isInstalled: Provider.of<
-                                                            user_data
-                                                                .UserProfileProvider>(
-                                                        context)
-                                                    .userProfileSetups![index!]
-                                                    .data()["widget_url2"]
+                                            isInstalled: (Provider.of<user_data.UserProfileProvider>(context)
+                                                                .userProfileSetups![
+                                                                    index!]
+                                                                .data()
+                                                            as Map<String, dynamic>)[
+                                                        "widget_url2"]
                                                     .toString()
                                                     .contains(
                                                         'play.google.com/store/apps/details?id=')
                                                 ? DeviceApps.isAppInstalled(
-                                                    Provider.of<
-                                                                user_data
-                                                                    .UserProfileProvider>(
-                                                            context)
-                                                        .userProfileSetups![
-                                                            index!]
-                                                        .data()["widget_url2"]
+                                                    (Provider.of<user_data.UserProfileProvider>(
+                                                                    context)
+                                                                .userProfileSetups![
+                                                                    index!]
+                                                                .data()
+                                                            as Map<String, dynamic>)["widget_url2"]
                                                         .toString()
                                                         .split("details?id=")[1]
                                                         .split("&")[0])
                                                 : Future.value(false),
                                             onTap: () async {
-                                              if (Provider.of<
-                                                          user_data
-                                                              .UserProfileProvider>(
-                                                      context,
-                                                      listen: false)
-                                                  .userProfileSetups![index!]
-                                                  .data()["widget_url2"]
+                                              if ((Provider.of<user_data.UserProfileProvider>(
+                                                                  context,
+                                                                  listen: false)
+                                                              .userProfileSetups![
+                                                                  index!]
+                                                              .data()
+                                                          as Map<String,
+                                                              dynamic>)[
+                                                      "widget_url2"]
                                                   .toString()
                                                   .contains(
                                                       'play.google.com/store/apps/details?id=')) {
                                                 final isInstalled = await DeviceApps
-                                                    .isAppInstalled(Provider.of<
-                                                                user_data
-                                                                    .UserProfileProvider>(
-                                                            context,
-                                                            listen: false)
-                                                        .userProfileSetups![
-                                                            index!]
-                                                        .data()["widget_url2"]
+                                                    .isAppInstalled((Provider.of<
+                                                                        user_data
+                                                                            .UserProfileProvider>(
+                                                                    context,
+                                                                    listen: false)
+                                                                .userProfileSetups![
+                                                                    index!]
+                                                                .data()
+                                                            as Map<String,
+                                                                dynamic>)["widget_url2"]
                                                         .toString()
                                                         .split("details?id=")[1]
                                                         .split("&")[0]);
                                                 isInstalled
-                                                    ? DeviceApps.openApp(Provider.of<
-                                                                user_data
-                                                                    .UserProfileProvider>(
-                                                            context,
-                                                            listen: false)
-                                                        .userProfileSetups![
-                                                            index!]
-                                                        .data()["widget_url2"]
+                                                    ? DeviceApps.openApp((Provider.of<user_data.UserProfileProvider>(
+                                                                    context,
+                                                                    listen: false)
+                                                                .userProfileSetups![
+                                                                    index!]
+                                                                .data() as Map<String, dynamic>)[
+                                                            "widget_url2"]
                                                         .toString()
                                                         .split("details?id=")[1]
                                                         .split("&")[0])
-                                                    : launch(Provider.of<
-                                                                user_data
-                                                                    .UserProfileProvider>(
-                                                            context,
-                                                            listen: false)
-                                                        .userProfileSetups![
-                                                            index!]
-                                                        .data()["widget_url2"]
+                                                    : launch((Provider.of<user_data.UserProfileProvider>(
+                                                                context,
+                                                                listen: false)
+                                                            .userProfileSetups![index!]
+                                                            .data() as Map<String, dynamic>)["widget_url2"]
                                                         .toString());
                                               } else {
-                                                launch(Provider.of<
-                                                            user_data
-                                                                .UserProfileProvider>(
-                                                        context,
-                                                        listen: false)
-                                                    .userProfileSetups![index!]
-                                                    .data()["widget_url2"]
+                                                launch((Provider.of<
+                                                                    user_data
+                                                                        .UserProfileProvider>(
+                                                                context,
+                                                                listen: false)
+                                                            .userProfileSetups![
+                                                                index!]
+                                                            .data()
+                                                        as Map<String,
+                                                            dynamic>)["widget_url2"]
                                                     .toString());
                                               }
                                             },
-                                            tileText: Provider.of<
-                                                        user_data
-                                                            .UserProfileProvider>(
-                                                    context,
-                                                    listen: false)
-                                                .userProfileSetups![index!]
-                                                .data()["widget2"]
-                                                .toString(),
+                                            tileText:
+                                                (Provider.of<user_data.UserProfileProvider>(
+                                                                context,
+                                                                listen: false)
+                                                            .userProfileSetups![
+                                                                index!]
+                                                            .data()
+                                                        as Map<String,
+                                                            dynamic>)["widget2"]
+                                                    .toString(),
                                             tileType: "Widget",
                                             panelCollapsed: panelCollapsed,
                                             delay: const Duration(
@@ -1510,13 +1544,12 @@ class _UserProfileSetupViewScreenState extends State<UserProfileSetupViewScreen>
                                   if (globals.prismUser.loggedIn == false) {
                                     googleSignInPopUp(context, () {
                                       onFavSetup(
-                                          Provider.of<
-                                                      user_data
-                                                          .UserProfileProvider>(
-                                                  context,
-                                                  listen: false)
-                                              .userProfileSetups![index!]
-                                              .data()["id"]
+                                          (Provider.of<user_data.UserProfileProvider>(
+                                                          context,
+                                                          listen: false)
+                                                      .userProfileSetups![index!]
+                                                      .data()
+                                                  as Map<String, dynamic>)["id"]
                                               .toString(),
                                           Provider.of<
                                                       user_data
@@ -1524,17 +1557,16 @@ class _UserProfileSetupViewScreenState extends State<UserProfileSetupViewScreen>
                                                   context,
                                                   listen: false)
                                               .userProfileSetups![index!]
-                                              .data());
+                                              .data() as Map);
                                     });
                                   } else {
                                     onFavSetup(
-                                        Provider.of<
-                                                    user_data
-                                                        .UserProfileProvider>(
-                                                context,
-                                                listen: false)
-                                            .userProfileSetups![index!]
-                                            .data()["id"]
+                                        (Provider.of<user_data.UserProfileProvider>(
+                                                        context,
+                                                        listen: false)
+                                                    .userProfileSetups![index!]
+                                                    .data()
+                                                as Map<String, dynamic>)["id"]
                                             .toString(),
                                         Provider.of<
                                                     user_data
@@ -1542,16 +1574,17 @@ class _UserProfileSetupViewScreenState extends State<UserProfileSetupViewScreen>
                                                 context,
                                                 listen: false)
                                             .userProfileSetups![index!]
-                                            .data());
+                                            .data() as Map);
                                   }
                                 },
                                 iconColor: Theme.of(context).accentColor,
                                 iconSize: 30,
                                 isFavorite: box.get(
-                                    Provider.of<user_data.UserProfileProvider>(
-                                            context)
-                                        .userProfileSetups![index!]
-                                        .data()["id"]
+                                    (Provider.of<user_data.UserProfileProvider>(
+                                                    context)
+                                                .userProfileSetups![index!]
+                                                .data()
+                                            as Map<String, dynamic>)["id"]
                                         .toString(),
                                     defaultValue: false) as bool,
                               ),
@@ -1560,17 +1593,19 @@ class _UserProfileSetupViewScreenState extends State<UserProfileSetupViewScreen>
                               onTap: () {
                                 createSetupDynamicLink(
                                     index.toString(),
-                                    Provider.of<user_data.UserProfileProvider>(
-                                            context,
-                                            listen: false)
-                                        .userProfileSetups![index!]
-                                        .data()["name"]
+                                    (Provider.of<user_data.UserProfileProvider>(
+                                                    context,
+                                                    listen: false)
+                                                .userProfileSetups![index!]
+                                                .data()
+                                            as Map<String, dynamic>)["name"]
                                         .toString(),
-                                    Provider.of<user_data.UserProfileProvider>(
-                                            context,
-                                            listen: false)
-                                        .userProfileSetups![index!]
-                                        .data()["image"]
+                                    (Provider.of<user_data.UserProfileProvider>(
+                                                    context,
+                                                    listen: false)
+                                                .userProfileSetups![index!]
+                                                .data()
+                                            as Map<String, dynamic>)["image"]
                                         .toString());
                               },
                               child: Container(
@@ -1625,9 +1660,9 @@ class _UserProfileSetupViewScreenState extends State<UserProfileSetupViewScreen>
                       },
                       child: CachedNetworkImage(
                         imageUrl:
-                            Provider.of<user_data.UserProfileProvider>(context)
-                                .userProfileSetups![index!]
-                                .data()["image"]
+                            (Provider.of<user_data.UserProfileProvider>(context)
+                                    .userProfileSetups![index!]
+                                    .data() as Map<String, dynamic>)["image"]
                                 .toString(),
                         imageBuilder: (context, imageProvider) => Container(
                           margin: EdgeInsets.symmetric(
@@ -1705,11 +1740,13 @@ class _UserProfileSetupViewScreenState extends State<UserProfileSetupViewScreen>
                                 return FadeTransition(
                                     opacity: animation,
                                     child: SetupOverlay(
-                                      link: Provider.of<
-                                              user_data
-                                                  .UserProfileProvider>(context)
-                                          .userProfileSetups![index!]
-                                          .data()["image"]
+                                      link: (Provider.of<
+                                                          user_data
+                                                              .UserProfileProvider>(
+                                                      context)
+                                                  .userProfileSetups![index!]
+                                                  .data()
+                                              as Map<String, dynamic>)["image"]
                                           .toString(),
                                     ));
                               },
@@ -1856,31 +1893,31 @@ class ModifiedDownloadButton extends StatelessWidget {
   const ModifiedDownloadButton({required this.index});
   @override
   Widget build(BuildContext context) {
-    return Provider.of<user_data.UserProfileProvider>(context)
-                .userProfileSetups![index!]
-                .data()["wallpaper_url"]
+    return (Provider.of<user_data.UserProfileProvider>(context)
+                    .userProfileSetups![index!]
+                    .data() as Map<String, dynamic>)["wallpaper_url"]
                 .toString()[0] !=
             "["
-        ? Provider.of<user_data.UserProfileProvider>(context)
+        ? (Provider.of<user_data.UserProfileProvider>(context)
                         .userProfileSetups![index!]
-                        .data()["wall_id"] !=
+                        .data() as Map<String, dynamic>)["wall_id"] !=
                     null &&
-                Provider.of<user_data.UserProfileProvider>(context)
+                (Provider.of<user_data.UserProfileProvider>(context)
                         .userProfileSetups![index!]
-                        .data()["wall_id"] !=
+                        .data() as Map<String, dynamic>)["wall_id"] !=
                     ""
             ? DownloadButton(
-                link: Provider.of<user_data.UserProfileProvider>(context)
-                    .userProfileSetups![index!]
-                    .data()["wallpaper_url"]
+                link: (Provider.of<user_data.UserProfileProvider>(context)
+                        .userProfileSetups![index!]
+                        .data() as Map<String, dynamic>)["wallpaper_url"]
                     .toString(),
                 colorChanged: false,
               )
             : GestureDetector(
                 onTap: () async {
-                  launch(Provider.of<user_data.UserProfileProvider>(context)
-                      .userProfileSetups![index!]
-                      .data()["wallpaper_url"]
+                  launch((Provider.of<user_data.UserProfileProvider>(context)
+                          .userProfileSetups![index!]
+                          .data() as Map<String, dynamic>)["wallpaper_url"]
                       .toString());
                 },
                 child: Container(
@@ -1904,10 +1941,10 @@ class ModifiedDownloadButton extends StatelessWidget {
               )
         : GestureDetector(
             onTap: () async {
-              launch(Provider.of<user_data.UserProfileProvider>(context,
-                      listen: false)
-                  .userProfileSetups![index!]
-                  .data()["wallpaper_url"][1]
+              launch((Provider.of<user_data.UserProfileProvider>(context,
+                          listen: false)
+                      .userProfileSetups![index!]
+                      .data() as Map<String, dynamic>)["wallpaper_url"][1]
                   .toString());
             },
             child: Container(
@@ -1937,31 +1974,31 @@ class ModifiedSetWallpaperButton extends StatelessWidget {
   const ModifiedSetWallpaperButton({required this.index});
   @override
   Widget build(BuildContext context) {
-    return Provider.of<user_data.UserProfileProvider>(context)
-                .userProfileSetups![index!]
-                .data()["wallpaper_url"]
+    return (Provider.of<user_data.UserProfileProvider>(context)
+                    .userProfileSetups![index!]
+                    .data() as Map<String, dynamic>)["wallpaper_url"]
                 .toString()[0] !=
             "["
-        ? Provider.of<user_data.UserProfileProvider>(context)
+        ? (Provider.of<user_data.UserProfileProvider>(context)
                         .userProfileSetups![index!]
-                        .data()["wall_id"] !=
+                        .data() as Map<String, dynamic>)["wall_id"] !=
                     null &&
-                Provider.of<user_data.UserProfileProvider>(context)
+                (Provider.of<user_data.UserProfileProvider>(context)
                         .userProfileSetups![index!]
-                        .data()["wall_id"] !=
+                        .data() as Map<String, dynamic>)["wall_id"] !=
                     ""
             ? SetWallpaperButton(
-                url: Provider.of<user_data.UserProfileProvider>(context)
-                    .userProfileSetups![index!]
-                    .data()["wallpaper_url"]
+                url: (Provider.of<user_data.UserProfileProvider>(context)
+                        .userProfileSetups![index!]
+                        .data() as Map<String, dynamic>)["wallpaper_url"]
                     .toString(),
                 colorChanged: false,
               )
             : GestureDetector(
                 onTap: () async {
-                  launch(Provider.of<user_data.UserProfileProvider>(context)
-                      .userProfileSetups![index!]
-                      .data()["wallpaper_url"]
+                  launch((Provider.of<user_data.UserProfileProvider>(context)
+                          .userProfileSetups![index!]
+                          .data() as Map<String, dynamic>)["wallpaper_url"]
                       .toString());
                 },
                 child: Container(
@@ -1985,10 +2022,10 @@ class ModifiedSetWallpaperButton extends StatelessWidget {
               )
         : GestureDetector(
             onTap: () async {
-              launch(Provider.of<user_data.UserProfileProvider>(context,
-                      listen: false)
-                  .userProfileSetups![index!]
-                  .data()["wallpaper_url"][1]
+              launch((Provider.of<user_data.UserProfileProvider>(context,
+                          listen: false)
+                      .userProfileSetups![index!]
+                      .data() as Map<String, dynamic>)["wallpaper_url"][1]
                   .toString());
             },
             child: Container(

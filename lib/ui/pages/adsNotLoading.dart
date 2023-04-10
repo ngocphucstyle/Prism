@@ -136,9 +136,9 @@ class AdsNotLoading extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    FlatButton(
+                    FloatingActionButton(
                       shape: const StadiumBorder(),
-                      color: Theme.of(context).errorColor,
+                      backgroundColor: Theme.of(context).errorColor,
                       onPressed: () {
                         if (globals.prismUser.loggedIn == false) {
                           googleSignInPopUp(context, () {
@@ -158,9 +158,9 @@ class AdsNotLoading extends StatelessWidget {
                         ),
                       ),
                     ),
-                    FlatButton(
+                    FloatingActionButton(
                       shape: const StadiumBorder(),
-                      color: Theme.of(context).errorColor,
+                      backgroundColor: Theme.of(context).errorColor,
                       onPressed: () {
                         main.RestartWidget.restartApp(context);
                       },

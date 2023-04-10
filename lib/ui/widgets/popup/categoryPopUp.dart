@@ -122,9 +122,9 @@ void showCategories(BuildContext context, CategoryMenu initialValue) {
       ),
     ),
     actions: [
-      FlatButton(
+      FloatingActionButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-        color: Theme.of(context).errorColor,
+        backgroundColor: Theme.of(context).errorColor,
         onPressed: () {
           Navigator.of(context).pop();
           logger.d('You have not chossed anything');

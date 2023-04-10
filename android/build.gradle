@@ -1,23 +1,23 @@
 buildscript {
+    ext.kotlin_version = '1.7.10'
     repositories {
         google()
-        jcenter()
-        maven {
-            url 'https://maven.fabric.io/public'
-        }
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.4'
-        classpath 'com.google.gms:google-services:4.3.4'
-        classpath 'io.fabric.tools:gradle:1.26.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.android.tools.build:gradle:7.2.2'
+        classpath 'com.google.gms:google-services:4.3.10'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.3.0'
     }
 }
 
 allprojects {
+    buildDir = "${rootProject.rootDir}/build/${project.name}"
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 

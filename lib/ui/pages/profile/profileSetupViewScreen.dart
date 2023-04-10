@@ -1,3 +1,5 @@
+// ignore_for_file: cast_nullable_to_non_nullable
+
 import 'dart:ui';
 
 import 'package:Prism/data/favourites/provider/favouriteSetupProvider.dart';
@@ -104,11 +106,11 @@ class _ProfileSetupViewScreenState extends State<ProfileSetupViewScreen>
     final Animation<double> offsetAnimation = Tween(begin: 0.0, end: 48.0)
         .chain(CurveTween(curve: Curves.easeOutCubic))
         .animate(shakeController)
-          ..addStatusListener((status) {
-            if (status == AnimationStatus.completed) {
-              shakeController.reverse();
-            }
-          });
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          shakeController.reverse();
+        }
+      });
     return WillPopScope(
       onWillPop: onWillPop,
       child: Scaffold(
@@ -1375,31 +1377,33 @@ class _ProfileSetupViewScreenState extends State<ProfileSetupViewScreen>
                                   if (globals.prismUser.loggedIn == false) {
                                     googleSignInPopUp(context, () {
                                       onFavSetup(
-                                          Provider.of<ProfileSetupProvider>(
-                                                  context,
-                                                  listen: false)
-                                              .profileSetups![index!]
-                                              .data()["id"]
+                                          (Provider.of<ProfileSetupProvider>(
+                                                          context,
+                                                          listen: false)
+                                                      .profileSetups![index!]
+                                                      .data()
+                                                  as Map<String, dynamic>)["id"]
                                               .toString(),
                                           Provider.of<ProfileSetupProvider>(
                                                   context,
                                                   listen: false)
                                               .profileSetups![index!]
-                                              .data());
+                                              .data() as Map);
                                     });
                                   } else {
                                     onFavSetup(
-                                        Provider.of<ProfileSetupProvider>(
-                                                context,
-                                                listen: false)
-                                            .profileSetups![index!]
-                                            .data()["id"]
+                                        (Provider.of<ProfileSetupProvider>(
+                                                        context,
+                                                        listen: false)
+                                                    .profileSetups![index!]
+                                                    .data()
+                                                as Map<String, dynamic>)["id"]
                                             .toString(),
                                         Provider.of<ProfileSetupProvider>(
                                                 context,
                                                 listen: false)
                                             .profileSetups![index!]
-                                            .data());
+                                            .data() as Map);
                                   }
                                 },
                                 iconColor: Theme.of(context).accentColor,
